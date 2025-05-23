@@ -1,0 +1,44 @@
+{
+  "name": "@thecompaniesapi/sdk",
+  "type": "module",
+  "version": "1.0.0",
+  "packageManager": "pnpm@10.11.0",
+  "description": "An enrichment platform to search and retrieve information about companies",
+  "author": "Yaël GUILLOUX <yael@thecompaniesapi.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/thecompaniesapi/sdk-typescript#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thecompaniesapi/sdk-typescript.git"
+  },
+  "bugs": "https://github.com/thecompaniesapi/sdk-typescript/issues",
+  "keywords": [
+    "companies",
+    "enrichment",
+    "search",
+    "retrieve",
+    "information",
+    "api",
+    "mcp",
+    "sdk"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": "./dist/index.mjs",
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "unbuild",
+    "lint": "eslint",
+    "prepublishOnly": "unbuild"
+  },
+  "dependencies": {
+    "openapi-fetch": "0.14.0"
+  }
+}
