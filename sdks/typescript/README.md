@@ -30,20 +30,20 @@ pnpm add @thecompaniesapi/sdk
 
 ## Usage
 
-### Basic Setup
+Get your API key from [your settings page](https://www.thecompaniesapi.com/settings/api-tokens).
 
 ```typescript
 import tca from '@thecompaniesapi/sdk'
 
 // Create a base client
 const client = tca({
-  apiKey: 'your-api-key', // Get your API key from https://www.thecompaniesapi.com/settings/api-tokens
+  apiKey: 'your-api-key',
 })
 ```
 
 ## Examples
 
-## Fetch a company data
+### Fetch a company data
 
 ```typescript
 // Fetch a company data if it exists in our database
