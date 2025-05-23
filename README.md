@@ -1,6 +1,6 @@
 # @thecompaniesapi/sdks
 
-This repository contains all currently available official SDKs for TheCompaniesAPI.
+This repository contains all currently available official SDKs for [TheCompaniesAPI](https://www.thecompaniesapi.com).
 
 ## Available SDKs
 
