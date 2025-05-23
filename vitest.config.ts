@@ -5,6 +5,7 @@ import { defineConfig } from 'vitest/config'
 export default defineConfig(
   ({ mode }) => ({
     test: {
+      include: ['sdks/**/*.test.ts'],
       server: {
         deps: {
           inline: ['vitest-package-exports'],

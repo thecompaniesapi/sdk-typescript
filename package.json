@@ -36,7 +36,7 @@
     "test": "vitest",
     "typecheck": "turbo run typecheck",
     "prepare": "simple-git-hooks",
-    "openapi:update": "jiti update-schema.ts"
+    "openapi:update": "jiti ./scripts/update-schema.ts"
   },
   "devDependencies": {
     "@antfu/eslint-config": "4.13.2",
