@@ -6,12 +6,12 @@
   "description": "An enrichment platform to search and retrieve information about companies",
   "author": "Yaël GUILLOUX <yael@thecompaniesapi.com>",
   "license": "MIT",
-  "homepage": "https://github.com/thecompaniesapi/sdk#readme",
+  "homepage": "https://github.com/thecompaniesapi/sdks#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/thecompaniesapi/sdk.git"
+    "url": "git+https://github.com/thecompaniesapi/sdks.git"
   },
-  "bugs": "https://github.com/thecompaniesapi/sdk/issues",
+  "bugs": "https://github.com/thecompaniesapi/sdks/issues",
   "keywords": [
     "companies",
     "enrichment",
