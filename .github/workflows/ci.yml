@@ -25,6 +25,13 @@ jobs:
           node-version: lts/*
           cache: pnpm
 
+      - name: Debug directory structure
+        run: |
+          pwd
+          ls -la
+          echo "Checking for lockfile:"
+          find . -name "pnpm-lock.yaml"
+
       - run: pnpm install --frozen-lockfile
       - run: pnpm lint
       - run: pnpm typecheck
@@ -44,6 +51,13 @@ jobs:
         with:
           node-version: lts/*
           cache: pnpm
+
+      - name: Debug directory structure
+        run: |
+          pwd
+          ls -la
+          echo "Checking for lockfile:"
+          find . -name "pnpm-lock.yaml"
 
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
