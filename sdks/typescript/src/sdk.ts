@@ -10,7 +10,7 @@ const defaultParams = {
 
 type TcaClient = Client<paths>
 
-export function createClient(
+export function createHttpClient(
   params: {
     apiKey?: string
     apiUrl?: string
@@ -66,14 +66,14 @@ type OperationsClient = {
   ) => Promise<FetchResponse<operations[K], object, `application/json`>>
 }
 
-export default function tca(
+export function createClient(
   params: {
     apiKey?: string
     apiUrl?: string
     visitorId?: string
   } = defaultParams,
 ): OperationsClient {
-  const client = createClient(params)
+  const client = createHttpClient(params)
 
   const operations = Object.entries(operationsMap).reduce(
     (acc, [key, pathValue]) => {

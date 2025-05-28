@@ -1,18 +1,18 @@
 import { describe, expect, it } from 'vitest'
 import { operationsMap } from './src/schema'
-import { createClient, createOperationsClient } from './src/sdk'
+import { createClient, createHttpClient } from './src/sdk'
 
 function getTcaClient(overwriteParams?: {
   apiKey?: string
   apiUrl?: string
 }) {
-  const base = createClient({
+  const base = createHttpClient({
     apiKey: process.env.TCA_API_KEY,
     apiUrl: process.env.TCA_API_URL,
     ...overwriteParams,
   })
 
-  const operations = createOperationsClient({
+  const operations = createClient({
     apiKey: process.env.TCA_API_KEY,
     apiUrl: process.env.TCA_API_URL,
     ...overwriteParams,

@@ -33,10 +33,10 @@ pnpm add @thecompaniesapi/sdk
 Get your API key from [your settings page](https://www.thecompaniesapi.com/settings/api-tokens).
 
 ```typescript
-import tca from '@thecompaniesapi/sdk'
+import { createClient } from '@thecompaniesapi/sdk'
 
 // Create a base client
-const client = tca({
+const tca = createClient({
   apiKey: 'your-api-key',
 })
 ```
@@ -61,7 +61,7 @@ const { data } = await tca.fetchCompany({
 ### Searching companies
 
 ```typescript
-const { data } = await operations.searchCompanies({
+const { data } = await tca.searchCompanies({
   query: [
     {
       attribute: 'about.industries',
