@@ -9,13 +9,13 @@ function getTcaClient(overwriteParams?: {
   const base = createHttpClient({
     apiKey: process.env.TCA_API_KEY,
     apiUrl: process.env.TCA_API_URL,
-    ...overwriteParams,
+    ...(overwriteParams || {}),
   })
 
   const operations = createClient({
     apiKey: process.env.TCA_API_KEY,
     apiUrl: process.env.TCA_API_URL,
-    ...overwriteParams,
+    ...(overwriteParams || {}),
   })
 
   return { base, operations }

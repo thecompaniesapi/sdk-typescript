@@ -11,11 +11,7 @@ export default defineConfig(
           inline: ['vitest-package-exports'],
         },
       },
-      env: {
-        TCA_API_KEY: process.env.TCA_API_KEY,
-        TCA_API_URL: process.env.TCA_API_URL,
-        ...loadEnv(mode, process.cwd(), ''),
-      },
+      env: loadEnv(mode, process.cwd(), ''),
     },
   }),
 )
