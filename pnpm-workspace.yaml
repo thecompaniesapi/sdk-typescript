@@ -1,8 +1,5 @@
 packages:
-  - playground
-  - docs
   - sdks/*
-  - examples/*
 onlyBuiltDependencies:
   - esbuild
   - simple-git-hooks
