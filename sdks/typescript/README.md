@@ -6,7 +6,9 @@
 [![JSDocs][jsdocs-src]][jsdocs-href]
 [![License][license-src]][license-href]
 
-A TypeScript SDK for [The Companies API](https://www.thecompaniesapi.com), providing type-safe access to the API.
+A fully-featured TypeScript SDK for [The Companies API](https://www.thecompaniesapi.com), providing type-safe access to company data, enrichment, and analytics. Built with TypeScript for excellent IDE support, autocompletion, and compile-time type checking.
+
+The full API documentation is available [here](https://www.thecompaniesapi.com/api).
 
 ## Features
 
@@ -24,10 +26,13 @@ A TypeScript SDK for [The Companies API](https://www.thecompaniesapi.com), provi
 ## Installation
 
 ```bash
+# with npm
 npm install @thecompaniesapi/sdk
-# or
+
+# with yarn
 yarn add @thecompaniesapi/sdk
-# or
+
+# with pnpm
 pnpm add @thecompaniesapi/sdk
 ```
 
