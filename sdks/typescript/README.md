@@ -1,4 +1,4 @@
-# @thecompaniesapi/sdk
+# The Companies API SDK for TypeScript
 
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
@@ -347,8 +347,6 @@ const response = await tca.fetchOpenApi({})
 ## License
 
 [MIT](./LICENSE) License © [TheCompaniesAPI](https://github.com/thecompaniesapi)
-
-<!-- Badges -->
 
 [npm-version-src]: https://img.shields.io/npm/v/@thecompaniesapi/sdk?style=flat&colorA=080f12&colorB=1fa669
 [npm-version-href]: https://npmjs.com/package/@thecompaniesapi/sdk
