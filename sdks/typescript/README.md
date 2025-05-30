@@ -68,7 +68,7 @@ await tca.searchCompanies({
 })
 
 const companies = response.data.companies // Companies that match the query
-const meta = response.data.meta // Pagination metadata
+const meta = response.data.meta // Meta information
 ```
 
 ### Search companies by name
@@ -82,7 +82,7 @@ const response = await tca.searchCompaniesByName({
 })
 
 const companies = response.data.companies // Companies that match the name
-const meta = response.data.meta // Pagination metadata
+const meta = response.data.meta // Meta information
 ```
 
 ### Search companies using a prompt
@@ -97,7 +97,7 @@ const response = await tca.searchCompaniesByPrompt({
 })
 
 const companies = response.data.companies // Companies that match the prompt
-const meta = response.data.meta // Pagination metadata
+const meta = response.data.meta // Meta information
 ```
 
 ### Search similar companies
@@ -112,7 +112,7 @@ const response = await tca.searchSimilarCompanies({
 })
 
 const companies = response.data.companies // Companies that are similar to the domains
-const meta = response.data.meta // Pagination metadata
+const meta = response.data.meta // Meta information
 ```
 
 ### Count companies matching your query
@@ -145,11 +145,15 @@ const response = await tca.fetchCompany({
   domain: 'microsoft.com'
 })
 
+const company = response.data // The company profile
+
 // Fetch company data and re-analyze it in real-time to get fresh, up-to-date information (slower but more accurate)
 const response = await tca.fetchCompany({
   domain: 'microsoft.com',
   refresh: true
 })
+
+const company = response.data // The company profile
 ```
 
 ### Enrich a company from an email
@@ -211,6 +215,7 @@ const response = await tca.askCompany({
 })
 
 const answer = response.data.answer // Structured AI response
+const meta = response.data.meta // Meta information
 ```
 
 ### Fetch the context of a company
@@ -224,6 +229,7 @@ const response = await tca.fetchCompanyContext({
 })
 
 const context = response.data.context // Includes market, model, differentiators, etc.
+const meta = response.data.meta // Meta information
 ```
 
 ### Fetch analytics data for a query or your lists
@@ -244,7 +250,8 @@ const response = await tca.fetchCompaniesAnalytics({
   ]
 })
 
-const analytics = response.data // Aggregated values + meta
+const analytics = response.data.data // Aggregated values
+const meta = response.data.meta // Meta information
 ```
 
 ### Export analytics data in multiple formats for a search
@@ -266,7 +273,8 @@ const response = await tca.exportCompaniesAnalytics({
   ]
 })
 
-const fileUrl = response.data.url // Link to download the file
+const analytics = response.data.data // Aggregated values
+const meta = response.data.meta // Meta information
 ```
 
 ## 🎯 Actions
@@ -284,6 +292,7 @@ const response = await tca.requestAction({
 })
 
 const actions = response.data.actions // Track this via fetchActions
+const meta = response.data.meta // Meta information
 ```
 
 ### Fetch the actions for your actions
@@ -298,7 +307,8 @@ const response = await tca.fetchActions({
   size: 5
 })
 
-const actions = response.data.actions // Metadata and status
+const actions = response.data.actions // Actions that match the query
+const meta = response.data.meta // Meta information
 ```
 
 ## 🏭 Industries
@@ -314,7 +324,8 @@ const response = await tca.searchIndustries({
   size: 10
 })
 
-const industries = response.data.industries
+const industries = response.data.industries // Industries that match the keyword
+const meta = response.data.meta // Meta information
 ```
 
 ### Find similar industries
@@ -327,7 +338,8 @@ const response = await tca.searchIndustriesSimilar({
   industries: ['saas', 'fintech']
 })
 
-const similar = response.data.industries
+const similar = response.data.industries // Industries that are similar to the given ones
+const meta = response.data.meta // Meta information
 ```
 
 ## ⚛️ Technologies
@@ -343,7 +355,8 @@ const response = await tca.searchTechnologies({
   size: 10
 })
 
-const technologies = response.data.technologies
+const technologies = response.data.technologies // Technologies that match the keyword
+const meta = response.data.meta // Meta information
 ```
 
 ## 🌍 Locations
@@ -359,7 +372,8 @@ const response = await tca.searchCities({
   size: 5
 })
 
-const cities = response.data.cities
+const cities = response.data.cities // Cities that match the name
+const meta = response.data.meta // Meta information
 ```
 
 ### Search counties
@@ -373,7 +387,8 @@ const response = await tca.searchCounties({
   size: 5
 })
 
-const counties = response.data.counties
+const counties = response.data.counties // Counties that match the name
+const meta = response.data.meta // Meta information
 ```
 
 ### Search states
@@ -387,7 +402,8 @@ const response = await tca.searchStates({
   size: 5
 })
 
-const states = response.data.states
+const states = response.data.states // States that match the name
+const meta = response.data.meta // Meta information
 ```
 
 ### Search countries
@@ -401,7 +417,8 @@ const response = await tca.searchCountries({
   size: 5
 })
 
-const countries = response.data.countries
+const countries = response.data.countries // Countries that match the name
+const meta = response.data.meta // Meta information
 ```
 
 ### Search continents
@@ -415,7 +432,8 @@ const response = await tca.searchContinents({
   size: 5
 })
 
-const continents = response.data.continents
+const continents = response.data.continents // Continents that match the name
+const meta = response.data.meta // Meta information
 ```
 
 ## 💼 Job titles
@@ -443,7 +461,8 @@ const jobTitle = response.data // Contains department, seniority, etc.
 // Fetch your lists
 const response = await tca.fetchLists()
 
-const lists = response.data.lists
+const lists = response.data.lists // Lists that match the query
+const meta = response.data.meta // Meta information
 ```
 
 ### Create a list of companies
@@ -457,7 +476,7 @@ const response = await tca.createList({
   type: 'companies'
 })
 
-const newList = response.data
+const newList = response.data // The new list
 ```
 
 ### Fetch companies in your list
@@ -470,7 +489,8 @@ const response = await tca.fetchCompaniesInList({
   listId: 1234
 })
 
-const companies = response.data.companies
+const companies = response.data.companies // Companies that match the list
+const meta = response.data.meta // Meta information
 ```
 
 ### Add or remove companies in your list
@@ -484,7 +504,7 @@ const response = await tca.addCompaniesToList({
   companies: ['apple.com', 'stripe.com']
 })
 
-const list = response.data
+const list = response.data // The updated list
 ```
 
 ## 👥 Teams
@@ -497,7 +517,7 @@ const list = response.data
 // Fetch your team details
 const response = await tca.fetchTeam()
 
-const team = response.data
+const team = response.data // Your team details
 ```
 
 ## 🔧 Others
@@ -510,7 +530,7 @@ const team = response.data
 // Check API health status
 const response = await tca.fetchApiHealth()
 
-const health = response.data
+const health = response.data // The health of the API
 ```
 
 ### Fetch the OpenAPI schema
@@ -521,7 +541,7 @@ const health = response.data
 // Fetch OpenAPI schema
 const response = await tca.fetchOpenApi()
 
-const schema = response.data
+const schema = response.data // The OpenAPI schema
 ```
 
 ## License
