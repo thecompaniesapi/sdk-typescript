@@ -43,6 +43,35 @@ const tca = createClient({
 
 ## Examples
 
+'fetchApiHealth'
+'fetchOpenApi'
+'fetchActions'
+'searchCompanies'
+'fetchCompany'
+'searchCompaniesByName'
+'searchCompaniesByPrompt'
+'searchCompaniesSimilar'
+'fetchCompaniesCount'
+'fetchCompanyByEmail'
+'fetchCompanyBySocials'
+'fetchCompanyEmailPatterns'
+'askCompany'
+'fetchCompanyContext'
+'fetchCompaniesAnalytics'
+'exportCompaniesAnalytics'
+'searchIndustries'
+'searchIndustriesSimilar'
+'searchTechnologies'
+'searchCities'
+'searchCounties'
+'searchCountries'
+'searchStates'
+'searchContinents'
+'enrichJobTitles'
+'fetchLists'
+'fetchCompaniesInList'
+'fetchTeam'
+
 ### Fetch a company data
 
 ```typescript
