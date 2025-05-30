@@ -94,7 +94,7 @@ const { data } = await tca.searchCompanies({
 ```typescript
 ```
 
-## Count companies matching your query
+### Count companies matching your query
 
 'fetchCompaniesCount'
 
@@ -103,7 +103,7 @@ const { data } = await tca.searchCompanies({
 ```typescript
 ```
 
-## Enrich a company from a domain name
+### Enrich a company from a domain name
 
 [Read the documentation](https://www.thecompaniesapi.com/api#companies-enrich-from-domain).
 
@@ -121,7 +121,7 @@ const { data } = await tca.fetchCompany({
 })
 ```
 
-## Enrich a company from an email
+### Enrich a company from an email
 
 'fetchCompanyByEmail'
 
@@ -130,7 +130,7 @@ const { data } = await tca.fetchCompany({
 ```typescript
 ```
 
-## Enrich a company from a social network URL
+### Enrich a company from a social network URL
 
 'fetchCompanyBySocials'
 
@@ -139,7 +139,7 @@ const { data } = await tca.fetchCompany({
 ```typescript
 ```
 
-## Find a company email patterns
+### Find a company email patterns
 
 'fetchCompanyEmailPatterns'
 
@@ -148,7 +148,7 @@ const { data } = await tca.fetchCompany({
 ```typescript
 ```
 
-## Ask a question about a company
+### Ask a question about a company
 
 'askCompany'
 
@@ -157,7 +157,7 @@ const { data } = await tca.fetchCompany({
 ```typescript
 ```
 
-## Fetch the context of a company
+### Fetch the context of a company
 
 'fetchCompanyContext'
 
@@ -166,7 +166,7 @@ const { data } = await tca.fetchCompany({
 ```typescript
 ```
 
-## Fetch analytics data for a query or your lists
+### Fetch analytics data for a query or your lists
 
 'fetchCompaniesAnalytics'
 
@@ -175,7 +175,7 @@ const { data } = await tca.fetchCompany({
 ```typescript
 ```
 
-## Export analytics data in multiple formats for a search
+### Export analytics data in multiple formats for a search
 
 'exportCompaniesAnalytics'
 
