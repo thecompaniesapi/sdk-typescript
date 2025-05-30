@@ -15,11 +15,10 @@ The full API documentation is available [here](https://www.thecompaniesapi.com/a
 - Type-safe API client with full TypeScript support from our [OpenAPI](https://api.thecompaniesapi.com/v2/openapi) schema
 - Powerful search capabilities with filters, sorting and pagination
 - Real-time company enrichment with both synchronous and asynchronous options
-- Create and manage custom company lists and collections
+- Create and manage your company lists
 - Track and monitor enrichment actions and requests
 - Generate detailed analytics and insights for searches and lists
 - Natural language querying for structured company information
-- Comprehensive error handling and request validation
 - Lightweight with minimal dependencies
 - Promise-based async/await interface
 
