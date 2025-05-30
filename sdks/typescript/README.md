@@ -10,7 +10,7 @@ A fully-featured TypeScript SDK for [The Companies API](https://www.thecompanies
 
 If you need more details about a specific endpoint, you can find the corresponding documentation in [the API reference](https://www.thecompaniesapi.com/api). You can also contact us on our livechat if you have any questions.
 
-## Features
+## 🚀 Features
 
 - Type-safe API client with full TypeScript support from our [OpenAPI](https://api.thecompaniesapi.com/v2/openapi) schema
 - Powerful search capabilities with filters, sorting and pagination
@@ -22,7 +22,7 @@ If you need more details about a specific endpoint, you can find the correspondi
 - Lightweight with minimal dependencies
 - Promise-based async/await interface
 
-## Installation
+## 📦 Installation
 
 ```bash
 # with npm
@@ -35,7 +35,7 @@ yarn add @thecompaniesapi/sdk
 pnpm add @thecompaniesapi/sdk
 ```
 
-## Initialize the client
+## 🔑 Initialize the client
 
 Get your API token from [your settings page](https://www.thecompaniesapi.com/settings/api-tokens) and initialize our client with `createClient`. The API token is required to authenticate your requests and should be kept secure. Never commit your API token to version control or share it publicly.
 
