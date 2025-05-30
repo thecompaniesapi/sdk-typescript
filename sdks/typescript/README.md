@@ -74,7 +74,7 @@ const companies = response.data.companies
 📖 [Documentation](https://www.thecompaniesapi.com/api#companies-search-name)
 
 ```typescript
-const { data } = await tca.searchCompaniesByName({
+const response = await tca.searchCompaniesByName({
   name: 'The Companies API',
   size: 10
 })
@@ -125,66 +125,58 @@ const response = await tca.fetchCompany({
 
 ### Enrich a company from an email
 
-'fetchCompanyByEmail'
-
 📖 [Documentation](https://www.thecompaniesapi.com/api#companies-enrich-from-email)
 
 ```typescript
-const { data } = await tca.fetchCompanyByEmail({})
+const response = await tca.fetchCompanyByEmail({})
 ```
 
 ### Enrich a company from a social network URL
 
-'fetchCompanyBySocials'
-
 📖 [Documentation](https://www.thecompaniesapi.com/api#companies-enrich-from-social-network-url)
 
 ```typescript
+const response = await tca.fetchCompanyBySocial({})
 ```
 
 ### Find a company email patterns
 
-'fetchCompanyEmailPatterns'
-
 📖 [Documentation](https://www.thecompaniesapi.com/api#companies-find-email-patterns)
 
 ```typescript
+const response = await tca.fetchCompanyEmailPatterns({})
 ```
 
 ### Ask a question about a company
 
-'askCompany'
-
 📖 [Documentation](https://www.thecompaniesapi.com/api#companies-ask)
 
 ```typescript
+const response = await tca.askCompany({})
 ```
 
 ### Fetch the context of a company
 
-'fetchCompanyContext'
-
 📖 [Documentation](https://www.thecompaniesapi.com/api#companies-fetch-context)
 
 ```typescript
+const response = await tca.fetchCompanyContext({})
 ```
 
 ### Fetch analytics data for a query or your lists
 
-'fetchCompaniesAnalytics'
-
 📖 [Documentation](https://www.thecompaniesapi.com/api#companies-fetch-analytics)
 
 ```typescript
+const response = await tca.fetchCompaniesAnalytics({})
 ```
 
 ### Export analytics data in multiple formats for a search
 
-'exportCompaniesAnalytics'
-
 📖 [Documentation](https://www.thecompaniesapi.com/api#companies-export-analytics)
 
 ```typescript
+const response = await tca.exportCompaniesAnalytics({})
 ```
 
 ## 🎯 Actions
@@ -198,111 +190,100 @@ const { data } = await tca.fetchCompanyByEmail({})
 
 ### Fetch the actions for your actions
 
-'fetchActions'
-
 📖 [Documentation](https://www.thecompaniesapi.com/api#actions-fetch)
 
 ```typescript
+const response = await tca.fetchActions({})
 ```
 
 ## 🏭 Industries
 
 ### Search industries
 
-'searchIndustries'
-
 📖 [Documentation](https://www.thecompaniesapi.com/api#industries-search)
 
 ```typescript
+const response = await tca.searchIndustries({})
 ```
 
 ### Find similar industries
 
-'searchIndustriesSimilar'
-
 📖 [Documentation](https://www.thecompaniesapi.com/api#industries-find-similar)
 
 ```typescript
+const response = await tca.searchIndustriesSimilar({})
 ```
 
 ## ⚛️ Technologies
 
 ### Search technologies
 
-'searchTechnologies'
-
 📖 [Documentation](https://www.thecompaniesapi.com/api#technologies-search)
 
 ```typescript
+const response = await tca.searchTechnologies({})
 ```
 
 ## 🌍 Locations
 
 ### Search cities
 
-'searchCities'
-
 📖 [Documentation](https://www.thecompaniesapi.com/api#locations-search-cities)
 
 ```typescript
+const response = await tca.searchCities({})
 ```
 
 ### Search counties
 
-'searchCounties'
-
 📖 [Documentation](https://www.thecompaniesapi.com/api#locations-search-counties)
 
 ```typescript
+const response = await tca.searchCounties({})
 ```
 
 ### Search states
 
-'searchStates'
-
 📖 [Documentation](https://www.thecompaniesapi.com/api#locations-search-states)
 
 ```typescript
+const response = await tca.searchStates({})
 ```
 
 ### Search countries
 
-'searchCountries'
-
 📖 [Documentation](https://www.thecompaniesapi.com/api#locations-search-countries)
 
 ```typescript
+const response = await tca.searchCountries({})
 ```
 
 ### Search continents
 
-'searchContinents'
-
 📖 [Documentation](https://www.thecompaniesapi.com/api#locations-search-continents)
 
 ```typescript
+const response = await tca.searchContinents({})
 ```
 
 ## 💼 Job titles
 
 ### Enrich a job title from its name
 
-'enrichJobTitles'
-
 📖 [Documentation](https://www.thecompaniesapi.com/api#job-titles-enrich-from-name)
 
 ```typescript
+const response = await tca.enrichJobTitles({})
 ```
 
 ## 📋 Lists
 
 ### Fetch your lists
 
-'fetchLists'
-
 📖 [Documentation](https://www.thecompaniesapi.com/api#lists-fetch-lists)
 
 ```typescript
+const response = await tca.fetchLists({})
 ```
 
 ### Create a list of companies
@@ -310,15 +291,17 @@ const { data } = await tca.fetchCompanyByEmail({})
 📖 [Documentation](https://www.thecompaniesapi.com/api#lists-create-list)
 
 ```typescript
+const response = await tca.createList({
+  name: 'My list',
+})
 ```
 
 ### Fetch companies in your list
 
-'fetchCompaniesInList'
-
 📖 [Documentation](https://www.thecompaniesapi.com/api#lists-fetch-companies)
 
 ```typescript
+const response = await tca.fetchCompaniesInList({})
 ```
 
 ### Add or remove companies in your list
@@ -326,15 +309,9 @@ const { data } = await tca.fetchCompanyByEmail({})
 📖 [Documentation](https://www.thecompaniesapi.com/api#lists-toggle-companies)
 
 ```typescript
-
-// Create a new list
-const { data: myNewList } = await tca.createList({
-  name: 'My list',
-})
-
 // Add companies to the list
-const { data } = await tca.addCompaniesToList({
-  listId: myNewList.id,
+const response = await tca.addCompaniesToList({
+  listId: myCompanyList.id,
   companies: ['microsoft.com', 'apple.com']
 })
 ```
@@ -343,31 +320,28 @@ const { data } = await tca.addCompaniesToList({
 
 ### Fetch your team
 
-'fetchTeam'
-
 📖 [Documentation](https://www.thecompaniesapi.com/api#teams-fetch-team)
 
 ```typescript
+const response = await tca.fetchTeam({})
 ```
 
 ## 🔧 Others
 
 ### Fetch the health of the API
 
-'fetchApiHealth'
-
 📖 [Documentation]()
 
 ```typescript
+const response = await tca.fetchApiHealth({})
 ```
 
 ### Fetch the OpenAPI schema
 
-'fetchOpenApi'
-
 📖 [Documentation]()
 
 ```typescript
+const response = await tca.fetchOpenApi({})
 ```
 
 ## License
