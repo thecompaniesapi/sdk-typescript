@@ -6,9 +6,9 @@
 [![JSDocs][jsdocs-src]][jsdocs-href]
 [![License][license-src]][license-href]
 
-A fully-featured TypeScript SDK for [The Companies API](https://www.thecompaniesapi.com), providing type-safe access to company data, enrichment, and analytics. Built with TypeScript for excellent IDE support, autocompletion, and compile-time type checking.
+A fully-featured TypeScript SDK for [The Companies API](https://www.thecompaniesapi.com), providing type-safe access to company data, locations, industries, technologies, job titles, lists, and more.
 
-The full API documentation is available [here](https://www.thecompaniesapi.com/api).
+The complete API documentation is available [here](https://www.thecompaniesapi.com/api).
 
 ## Features
 
@@ -35,20 +35,21 @@ yarn add @thecompaniesapi/sdk
 pnpm add @thecompaniesapi/sdk
 ```
 
-## Usage
+## Initialize our client
 
-Get your API key from [your settings page](https://www.thecompaniesapi.com/settings/api-tokens).
+Get your API token from [your settings page](https://www.thecompaniesapi.com/settings/api-tokens) and initialize our client with `createClient`. The API token is required to authenticate your requests and should be kept secure. Never commit your API token to version control or share it publicly.
 
 ```typescript
 import { createClient } from '@thecompaniesapi/sdk'
 
-// Create a base client
 const tca = createClient({
-  apiKey: 'your-api-key',
+  apiKey: 'your-api-token',
 })
 ```
 
-## Examples
+## Documentation
+
+If you need more details about a specific endpoint, you can find the corresponding documentation in [the API reference](https://www.thecompaniesapi.com/api). You can also contact us on our livechat if you have any questions.
 
 ### Companies
 
@@ -72,17 +73,29 @@ const { data } = await tca.searchCompanies({
 
 'searchCompaniesByName'
 
+```typescript
+```
+
 #### Search companies using a prompt
 
 'searchCompaniesByPrompt'
+
+```typescript
+```
 
 #### Search similar companies
 
 'searchCompaniesSimilar'
 
+```typescript
+```
+
 ### Count companies matching your query
 
 'fetchCompaniesCount'
+
+```typescript
+```
 
 ### Enrich a company from a domain name
 
@@ -103,37 +116,64 @@ const { data } = await tca.fetchCompany({
 
 'fetchCompanyByEmail'
 
+```typescript
+```
+
 ### Enrich a company from a social network URL
 
 'fetchCompanyBySocials'
+
+```typescript
+```
 
 ### Find a company email patterns
 
 'fetchCompanyEmailPatterns'
 
+```typescript
+```
+
 ### Ask a question about a company
 
 'askCompany'
+
+```typescript
+```
 
 ### Fetch the context of a company
 
 'fetchCompanyContext'
 
+```typescript
+```
+
 ### Fetch analytics data for a query or your lists
 
 'fetchCompaniesAnalytics'
+
+```typescript
+```
 
 ### Export analytics data in multiple formats for a search
 
 'exportCompaniesAnalytics'
 
+```typescript
+```
+
 ### Actions
 
 #### Request an action on one or more companies
 
+```typescript
+```
+
 #### Fetch the actions for your actions
 
 'fetchActions'
+
+```typescript
+```
 
 ### Industries
 
@@ -141,9 +181,15 @@ const { data } = await tca.fetchCompany({
 
 'searchIndustries'
 
+```typescript
+```
+
 #### Find similar industries
 
 'searchIndustriesSimilar'
+
+```typescript
+```
 
 ### Technologies
 
@@ -151,27 +197,45 @@ const { data } = await tca.fetchCompany({
 
 'searchTechnologies'
 
+```typescript
+```
+
 ### Locations
 
 #### Search cities
 
 'searchCities'
 
+```typescript
+```
+
 #### Search counties
 
 'searchCounties'
+
+```typescript
+```
 
 #### Search countries
 
 'searchCountries'
 
+```typescript
+```
+
 #### Search states
 
 'searchStates'
 
+```typescript
+```
+
 #### Search continents
 
 'searchContinents'
+
+```typescript
+```
 
 ### Job titles
 
@@ -179,17 +243,29 @@ const { data } = await tca.fetchCompany({
 
 'enrichJobTitles'
 
+```typescript
+```
+
 ### Lists
 
 #### Fetch your lists
 
 'fetchLists'
 
+```typescript
+```
+
 #### Create a list of companies
+
+```typescript
+```
 
 #### Fetch companies in your list
 
 'fetchCompaniesInList'
+
+```typescript
+```
 
 #### Add or remove companies in your list
 
@@ -212,15 +288,24 @@ const { data } = await tca.addCompaniesToList({
 
 'fetchTeam'
 
+```typescript
+```
+
 ### Others
 
 #### Fetch the health of the API
 
 'fetchApiHealth'
 
+```typescript
+```
+
 #### Fetch the OpenAPI schema
 
 'fetchOpenApi'
+
+```typescript
+```
 
 ## License
 
