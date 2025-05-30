@@ -40,6 +40,7 @@ pnpm add @thecompaniesapi/sdk
 Get your API token from [your settings page](https://www.thecompaniesapi.com/settings/api-tokens) and initialize our client with `createClient`. The API token is required to authenticate your requests and should be kept secure. Never commit your API token to version control or share it publicly.
 
 ```typescript
+// Documentation: 
 import { createClient } from '@thecompaniesapi/sdk'
 
 const tca = createClient({
@@ -52,6 +53,8 @@ const tca = createClient({
 ### Search companies
 
 ```typescript
+// Documentation: https://www.thecompaniesapi.com/api#companies-search
+
 const { data } = await tca.searchCompanies({
   query: [
     {
@@ -70,6 +73,7 @@ const { data } = await tca.searchCompanies({
 'searchCompaniesByName'
 
 ```typescript
+// Documentation: https://www.thecompaniesapi.com/api#companies-search-name
 ```
 
 ### Search companies using a prompt
@@ -77,6 +81,7 @@ const { data } = await tca.searchCompanies({
 'searchCompaniesByPrompt'
 
 ```typescript
+// Documentation: https://www.thecompaniesapi.com/api#companies-search-prompt
 ```
 
 ### Search similar companies
@@ -84,6 +89,7 @@ const { data } = await tca.searchCompanies({
 'searchCompaniesSimilar'
 
 ```typescript
+// Documentation: https://www.thecompaniesapi.com/api#companies-search-similar
 ```
 
 ## Count companies matching your query
@@ -91,11 +97,14 @@ const { data } = await tca.searchCompanies({
 'fetchCompaniesCount'
 
 ```typescript
+// Documentation: https://www.thecompaniesapi.com/api#companies-count
 ```
 
 ## Enrich a company from a domain name
 
 ```typescript
+// Documentation: https://www.thecompaniesapi.com/api#companies-enrich-from-domain
+
 // Fetch a company data if it exists in our database
 const { data } = await tca.fetchCompany({
   domain: 'microsoft.com'
@@ -113,6 +122,7 @@ const { data } = await tca.fetchCompany({
 'fetchCompanyByEmail'
 
 ```typescript
+// Documentation: https://www.thecompaniesapi.com/api#companies-enrich-from-email
 ```
 
 ## Enrich a company from a social network URL
@@ -120,6 +130,7 @@ const { data } = await tca.fetchCompany({
 'fetchCompanyBySocials'
 
 ```typescript
+// Documentation: https://www.thecompaniesapi.com/api#companies-enrich-from-social-network-url
 ```
 
 ## Find a company email patterns
@@ -127,6 +138,7 @@ const { data } = await tca.fetchCompany({
 'fetchCompanyEmailPatterns'
 
 ```typescript
+// Documentation: https://www.thecompaniesapi.com/api#companies-find-email-patterns
 ```
 
 ## Ask a question about a company
@@ -134,6 +146,7 @@ const { data } = await tca.fetchCompany({
 'askCompany'
 
 ```typescript
+// Documentation: https://www.thecompaniesapi.com/api#companies-ask
 ```
 
 ## Fetch the context of a company
@@ -141,6 +154,7 @@ const { data } = await tca.fetchCompany({
 'fetchCompanyContext'
 
 ```typescript
+// Documentation: https://www.thecompaniesapi.com/api#companies-fetch-context
 ```
 
 ## Fetch analytics data for a query or your lists
@@ -148,6 +162,7 @@ const { data } = await tca.fetchCompany({
 'fetchCompaniesAnalytics'
 
 ```typescript
+// Documentation: https://www.thecompaniesapi.com/api#companies-fetch-analytics
 ```
 
 ## Export analytics data in multiple formats for a search
@@ -155,6 +170,7 @@ const { data } = await tca.fetchCompany({
 'exportCompaniesAnalytics'
 
 ```typescript
+// Documentation: https://www.thecompaniesapi.com/api#companies-export-analytics
 ```
 
 ## 🎯 Actions
@@ -162,6 +178,7 @@ const { data } = await tca.fetchCompany({
 ### Request an action on one or more companies
 
 ```typescript
+// Documentation: https://www.thecompaniesapi.com/api#actions-request-action
 ```
 
 ### Fetch the actions for your actions
@@ -169,6 +186,7 @@ const { data } = await tca.fetchCompany({
 'fetchActions'
 
 ```typescript
+// Documentation: https://www.thecompaniesapi.com/api#actions-fetch
 ```
 
 ## 🏭 Industries
@@ -178,6 +196,7 @@ const { data } = await tca.fetchCompany({
 'searchIndustries'
 
 ```typescript
+// Documentation: https://www.thecompaniesapi.com/api#industries-search
 ```
 
 ### Find similar industries
@@ -185,6 +204,7 @@ const { data } = await tca.fetchCompany({
 'searchIndustriesSimilar'
 
 ```typescript
+// Documentation: https://www.thecompaniesapi.com/api#industries-find-similar
 ```
 
 ## ⚛️ Technologies
@@ -194,6 +214,7 @@ const { data } = await tca.fetchCompany({
 'searchTechnologies'
 
 ```typescript
+// Documentation: https://www.thecompaniesapi.com/api#technologies-search
 ```
 
 ## 🌍 Locations
@@ -203,6 +224,7 @@ const { data } = await tca.fetchCompany({
 'searchCities'
 
 ```typescript
+// Documentation: https://www.thecompaniesapi.com/api#locations-search-cities
 ```
 
 ### Search counties
@@ -210,13 +232,7 @@ const { data } = await tca.fetchCompany({
 'searchCounties'
 
 ```typescript
-```
-
-### Search countries
-
-'searchCountries'
-
-```typescript
+// Documentation: https://www.thecompaniesapi.com/api#locations-search-counties
 ```
 
 ### Search states
@@ -224,6 +240,15 @@ const { data } = await tca.fetchCompany({
 'searchStates'
 
 ```typescript
+// Documentation: https://www.thecompaniesapi.com/api#locations-search-states
+```
+
+### Search countries
+
+'searchCountries'
+
+```typescript
+// Documentation: https://www.thecompaniesapi.com/api#locations-search-countries
 ```
 
 ### Search continents
@@ -231,6 +256,7 @@ const { data } = await tca.fetchCompany({
 'searchContinents'
 
 ```typescript
+// Documentation: https://www.thecompaniesapi.com/api#locations-search-continents
 ```
 
 ## 💼 Job titles
@@ -240,6 +266,7 @@ const { data } = await tca.fetchCompany({
 'enrichJobTitles'
 
 ```typescript
+// Documentation: https://www.thecompaniesapi.com/api#job-titles-enrich-from-name
 ```
 
 ## 📋 Lists
@@ -249,11 +276,13 @@ const { data } = await tca.fetchCompany({
 'fetchLists'
 
 ```typescript
+// Documentation: https://www.thecompaniesapi.com/api#lists-fetch-lists
 ```
 
 ### Create a list of companies
 
 ```typescript
+// Documentation: https://www.thecompaniesapi.com/api#lists-create-list
 ```
 
 ### Fetch companies in your list
@@ -261,11 +290,14 @@ const { data } = await tca.fetchCompany({
 'fetchCompaniesInList'
 
 ```typescript
+// Documentation: https://www.thecompaniesapi.com/api#lists-fetch-companies
 ```
 
 ### Add or remove companies in your list
 
 ```typescript
+// Documentation: https://www.thecompaniesapi.com/api#lists-toggle-companies
+
 // Create a new list
 const { data: myNewList } = await tca.createList({
   name: 'My list',
@@ -285,6 +317,7 @@ const { data } = await tca.addCompaniesToList({
 'fetchTeam'
 
 ```typescript
+// Documentation: https://www.thecompaniesapi.com/api#teams-fetch-team
 ```
 
 ## 🔧 Others
@@ -294,6 +327,7 @@ const { data } = await tca.addCompaniesToList({
 'fetchApiHealth'
 
 ```typescript
+// Documentation: 
 ```
 
 ### Fetch the OpenAPI schema
@@ -301,6 +335,7 @@ const { data } = await tca.addCompaniesToList({
 'fetchOpenApi'
 
 ```typescript
+// Documentation: 
 ```
 
 ## License
