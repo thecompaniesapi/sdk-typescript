@@ -54,7 +54,7 @@ const tca = createClient({
 📖 [Documentation](https://www.thecompaniesapi.com/api#companies-search)
 
 ```typescript
-const { data } = await tca.searchCompanies({
+const response = await tca.searchCompanies({
   query: [
     {
       attribute: 'about.industries',
@@ -65,11 +65,11 @@ const { data } = await tca.searchCompanies({
   ],
   size: 25
 })
+
+const companies = response.data.companies
 ```
 
 ### Search companies by name
-
-'searchCompaniesByName'
 
 📖 [Documentation](https://www.thecompaniesapi.com/api#companies-search-name)
 
@@ -78,33 +78,32 @@ const { data } = await tca.searchCompaniesByName({
   name: 'The Companies API',
   size: 10
 })
+
+const companies = response.data.companies
 ```
 
 ### Search companies using a prompt
 
-'searchCompaniesByPrompt'
-
 📖 [Documentation](https://www.thecompaniesapi.com/api#companies-search-prompt)
 
 ```typescript
+const response = await tca.searchCompaniesByPrompt({})
 ```
 
 ### Search similar companies
 
-'searchCompaniesSimilar'
-
 📖 [Documentation](https://www.thecompaniesapi.com/api#companies-search-similar)
 
 ```typescript
+const response = await tca.searchCompaniesSimilar({}}
 ```
 
 ### Count companies matching your query
 
-'fetchCompaniesCount'
-
 📖 [Documentation](https://www.thecompaniesapi.com/api#companies-count)
 
 ```typescript
+const response = await tca.countCompanies({})
 ```
 
 ### Enrich a company from a domain name
@@ -112,16 +111,15 @@ const { data } = await tca.searchCompaniesByName({
 📖 [Documentation](https://www.thecompaniesapi.com/api#companies-enrich-from-domain)
 
 ```typescript
-
-// Fetch a company data if it exists in our database
-const { data } = await tca.fetchCompany({
+// Fetch company data from our database without enrichment (faster response)
+const response = await tca.fetchCompany({
   domain: 'microsoft.com'
 })
 
-// Fetch a company data and enrich it if it doesn't exist
-const { data } = await tca.fetchCompany({
+// Fetch company data and re-analyze it in real-time to get fresh, up-to-date information (slower but more accurate)
+const response = await tca.fetchCompany({
   domain: 'microsoft.com',
-  sync: true
+  refresh: true
 })
 ```
 
@@ -132,6 +130,7 @@ const { data } = await tca.fetchCompany({
 📖 [Documentation](https://www.thecompaniesapi.com/api#companies-enrich-from-email)
 
 ```typescript
+const { data } = await tca.fetchCompanyByEmail({})
 ```
 
 ### Enrich a company from a social network URL
