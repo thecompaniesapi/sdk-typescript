@@ -11,12 +11,15 @@ A TypeScript SDK for [The Companies API](https://www.thecompaniesapi.com), provi
 ## Features
 
 - Type-safe API client with full TypeScript support from our [OpenAPI](https://api.thecompaniesapi.com/v2/openapi) schema
-- Search companies using our complete search engine API
-- Enrich companies on demand using actions or sync enrichment requests
-- Manage your lists of companies
-- Request and track specific actions
-- Get analytics about a search query or a list
-- Ask question on any company and get structured answers
+- Powerful search capabilities with filters, sorting and pagination
+- Real-time company enrichment with both synchronous and asynchronous options
+- Create and manage custom company lists and collections
+- Track and monitor enrichment actions and requests
+- Generate detailed analytics and insights for searches and lists
+- Natural language querying for structured company information
+- Comprehensive error handling and request validation
+- Lightweight with minimal dependencies
+- Promise-based async/await interface
 
 ## Installation
 
@@ -47,7 +50,19 @@ const tca = createClient({
 
 #### Search companies
 
-'searchCompanies'
+```typescript
+const { data } = await tca.searchCompanies({
+  query: [
+    {
+      attribute: 'about.industries',
+      operator: 'or',
+      sign: 'equals',
+      values: ['higher-education']
+    }
+  ],
+  size: 3
+})
+```
 
 #### Search companies by name
 
@@ -67,7 +82,18 @@ const tca = createClient({
 
 ### Enrich a company from a domain name
 
-'fetchCompany'
+```typescript
+// Fetch a company data if it exists in our database
+const { data } = await tca.fetchCompany({
+  domain: 'microsoft.com'
+})
+
+// Fetch a company data and enrich it if it doesn't exist
+const { data } = await tca.fetchCompany({
+  domain: 'microsoft.com',
+  sync: true
+})
+```
 
 ### Enrich a company from an email
 
@@ -163,50 +189,6 @@ const tca = createClient({
 
 #### Add or remove companies in your list
 
-### Teams
-
-#### Fetch your team
-
-'fetchTeam'
-
-### Others
-
-'fetchApiHealth'
-'fetchOpenApi'
-
-### Fetch a company data
-
-```typescript
-// Fetch a company data if it exists in our database
-const { data } = await tca.fetchCompany({
-  domain: 'microsoft.com'
-})
-
-// Fetch a company data and enrich it if it doesn't exist
-const { data } = await tca.fetchCompany({
-  domain: 'microsoft.com',
-  sync: true
-})
-```
-
-### Searching companies
-
-```typescript
-const { data } = await tca.searchCompanies({
-  query: [
-    {
-      attribute: 'about.industries',
-      operator: 'or',
-      sign: 'equals',
-      values: ['higher-education']
-    }
-  ],
-  size: 3
-})
-```
-
-### Add companies to your lists
-
 ```typescript
 // Create a new list
 const { data: myNewList } = await tca.createList({
@@ -219,6 +201,22 @@ const { data } = await tca.addCompaniesToList({
   companies: ['microsoft.com', 'apple.com']
 })
 ```
+
+### Teams
+
+#### Fetch your team
+
+'fetchTeam'
+
+### Others
+
+#### Fetch the health of the API
+
+'fetchApiHealth'
+
+#### Fetch the OpenAPI schema
+
+'fetchOpenApi'
 
 ## License
 
