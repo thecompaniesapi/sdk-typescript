@@ -55,7 +55,10 @@ const tca = createClient({
 
 📖 [Documentation](https://www.thecompaniesapi.com/api#companies-search)
 
+🔍 To learn more about our query system, please read our [use case documentation](https://www.thecompaniesapi.com/use-cases/companies-search-engine).
+
 ```typescript
+// Search 25 companies by industry and employees range
 const response = await tca.searchCompanies({
   query: [
     {
@@ -63,12 +66,19 @@ const response = await tca.searchCompanies({
       operator: 'or',
       sign: 'equals',
       values: ['computer-software']
+    },
+    {
+      attribute: 'about.totalEmployees',
+      operator: 'or',
+      sign: 'equals',
+      values: ['10-50']
     }
   ],
   size: 25
 })
 
-const companies = response.data.companies
+const companies = response.data.companies // Companies that match the query
+const meta = response.data.meta // Pagination metadata
 ```
 
 ### Search companies by name
@@ -78,10 +88,11 @@ const companies = response.data.companies
 ```typescript
 const response = await tca.searchCompaniesByName({
   name: 'The Companies API',
-  size: 10
+  size: 2
 })
 
-const companies = response.data.companies
+const companies = response.data.companies // Companies that match the name
+const meta = response.data.meta // Pagination metadata
 ```
 
 ### Search companies using a prompt
@@ -89,7 +100,14 @@ const companies = response.data.companies
 📖 [Documentation](https://www.thecompaniesapi.com/api#companies-search-prompt)
 
 ```typescript
-const response = await tca.searchCompaniesByPrompt({})
+// Search 25 companies for a specific prompt
+const response = await tca.searchCompaniesByPrompt({
+  prompt: 'SaaS Companies in the United States with more than 100 employees'
+  size: 25
+})
+
+const companies = response.data.companies // Companies that match the prompt
+const meta = response.data.meta // Pagination metadata
 ```
 
 ### Search similar companies
@@ -97,7 +115,14 @@ const response = await tca.searchCompaniesByPrompt({})
 📖 [Documentation](https://www.thecompaniesapi.com/api#companies-search-similar)
 
 ```typescript
-const response = await tca.searchCompaniesSimilar({}}
+// Search 25 companies that are similar to Crisp and Intercom
+const response = await tca.searchSimilarCompanies({
+  domains: ['crisp.chat', 'intercom.com'],
+  size: 25
+})
+
+const companies = response.data.companies // Companies that are similar to the domains
+const meta = response.data.meta // Pagination metadata
 ```
 
 ### Count companies matching your query
@@ -105,7 +130,19 @@ const response = await tca.searchCompaniesSimilar({}}
 📖 [Documentation](https://www.thecompaniesapi.com/api#companies-count)
 
 ```typescript
-const response = await tca.countCompanies({})
+// Count how many companies are in the computer-software industry
+const response = await tca.countCompanies({
+  query: [
+    {
+      attribute: 'about.industries',
+      operator: 'or',
+      sign: 'equals',
+      values: ['computer-software']
+    }
+  ]
+})
+
+const count = response.data // Number of companies that match the query
 ```
 
 ### Enrich a company from a domain name
