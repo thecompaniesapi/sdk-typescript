@@ -39,10 +39,12 @@ pnpm add @thecompaniesapi/sdk
 
 ## 🔑 Initialize the client
 
-Get your API token from [your settings page](https://www.thecompaniesapi.com/settings/api-tokens) and initialize our client with `createClient`. The API token is required to authenticate your requests and should be kept secure. Never commit your API token to version control or share it publicly.
+Get your API token from [your settings page](https://www.thecompaniesapi.com/settings/api-tokens) and initialize our client with `createClient`.
+
+The API token is required to authenticate your requests and should be kept secure. Never commit your API token to version control or share it publicly.
 
 ```typescript
-import { createClient } from '@thecompaniesapi/sdk'
+import createClient from '@thecompaniesapi/sdk'
 
 const tca = createClient({
   apiKey: 'your-api-token',
@@ -92,7 +94,7 @@ const meta = response.data.meta // Meta information
 ```typescript
 // Search 25 companies for a specific prompt
 const response = await tca.searchCompaniesByPrompt({
-  prompt: 'SaaS Companies in the United States with more than 100 employees'
+  prompt: 'SaaS Companies in the United States with more than 100 employees',
   size: 25
 })
 
