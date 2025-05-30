@@ -58,21 +58,11 @@ const tca = createClient({
 🔍 To learn more about our query system, please read our [use case documentation](https://www.thecompaniesapi.com/use-cases/companies-search-engine).
 
 ```typescript
-// Search 25 companies by industry and employees range
-const response = await tca.searchCompanies({
+// Search companies by industry and size
+await tca.searchCompanies({
   query: [
-    {
-      attribute: 'about.industries',
-      operator: 'or',
-      sign: 'equals',
-      values: ['computer-software']
-    },
-    {
-      attribute: 'about.totalEmployees',
-      operator: 'or',
-      sign: 'equals',
-      values: ['10-50']
-    }
+    { attribute: 'about.industries', operator: 'or', sign: 'equals', values: ['computer-software'] },
+    { attribute: 'about.totalEmployees', operator: 'or', sign: 'equals', values: ['10-50'] }
   ],
   size: 25
 })
@@ -167,7 +157,12 @@ const response = await tca.fetchCompany({
 📖 [Documentation](https://www.thecompaniesapi.com/api#companies-enrich-from-email)
 
 ```typescript
-const response = await tca.fetchCompanyByEmail({})
+// Fetch the company profile behind a professional email address
+const response = await tca.fetchCompanyByEmail({
+  email: 'jack@openai.com'
+})
+
+const company = response.data // The company profile
 ```
 
 ### Enrich a company from a social network URL
@@ -175,7 +170,12 @@ const response = await tca.fetchCompanyByEmail({})
 📖 [Documentation](https://www.thecompaniesapi.com/api#companies-enrich-from-social-network-url)
 
 ```typescript
-const response = await tca.fetchCompanyBySocial({})
+// Fetch the company profile behind a social network URL
+const response = await tca.fetchCompanyBySocial({
+  linkedin: 'https://www.linkedin.com/company/apple'
+})
+
+const company = response.data // The company profile
 ```
 
 ### Find a company email patterns
@@ -183,7 +183,12 @@ const response = await tca.fetchCompanyBySocial({})
 📖 [Documentation](https://www.thecompaniesapi.com/api#companies-find-email-patterns)
 
 ```typescript
-const response = await tca.fetchCompanyEmailPatterns({})
+// Fetch the company email patterns for a specific domain
+const response = await tca.fetchCompanyEmailPatterns({
+  domain: 'apple.com'
+})
+
+const patterns = response.data // The company email patterns
 ```
 
 ### Ask a question about a company
@@ -191,7 +196,21 @@ const response = await tca.fetchCompanyEmailPatterns({})
 📖 [Documentation](https://www.thecompaniesapi.com/api#companies-ask)
 
 ```typescript
-const response = await tca.askCompany({})
+// Ask what products a company offers using its domain
+const response = await tca.askCompany({
+  domain: 'microsoft.com',
+  question: 'What products does this company offer?',
+  model: 'large', // 'small' is also available
+  fields: [
+    {
+      key: 'products',
+      type: 'array|string',
+      description: 'The products that the company offers'
+    }
+  ]
+})
+
+const answer = response.data.answer // Structured AI response
 ```
 
 ### Fetch the context of a company
@@ -199,7 +218,12 @@ const response = await tca.askCompany({})
 📖 [Documentation](https://www.thecompaniesapi.com/api#companies-fetch-context)
 
 ```typescript
-const response = await tca.fetchCompanyContext({})
+// Get AI-generated strategic insights about a company
+const response = await tca.fetchCompanyContext({
+  domain: 'microsoft.com'
+})
+
+const context = response.data.context // Includes market, model, differentiators, etc.
 ```
 
 ### Fetch analytics data for a query or your lists
@@ -207,7 +231,20 @@ const response = await tca.fetchCompanyContext({})
 📖 [Documentation](https://www.thecompaniesapi.com/api#companies-fetch-analytics)
 
 ```typescript
-const response = await tca.fetchCompaniesAnalytics({})
+// Analyze company distribution by business type
+const response = await tca.fetchCompaniesAnalytics({
+  attribute: 'about.businessType',
+  query: [
+    {
+      attribute: 'locations.headquarters.country.code',
+      operator: 'or',
+      sign: 'equals',
+      values: ['us', 'gb', 'fr']
+    }
+  ]
+})
+
+const analytics = response.data // Aggregated values + meta
 ```
 
 ### Export analytics data in multiple formats for a search
@@ -215,7 +252,21 @@ const response = await tca.fetchCompaniesAnalytics({})
 📖 [Documentation](https://www.thecompaniesapi.com/api#companies-export-analytics)
 
 ```typescript
-const response = await tca.exportCompaniesAnalytics({})
+// Export analytics to CSV
+const response = await tca.exportCompaniesAnalytics({
+  format: 'csv',
+  attributes: ['about.industries', 'about.totalEmployees'],
+  query: [
+    {
+      attribute: 'technologies.active',
+      operator: 'or',
+      sign: 'equals',
+      values: ['shopify']
+    }
+  ]
+})
+
+const fileUrl = response.data.url // Link to download the file
 ```
 
 ## 🎯 Actions
@@ -225,6 +276,14 @@ const response = await tca.exportCompaniesAnalytics({})
 📖 [Documentation](https://www.thecompaniesapi.com/api#actions-request-action)
 
 ```typescript
+// Request an enrichment job on multiple companies
+const response = await tca.requestAction({
+  domains: ['microsoft.com', 'apple.com'],
+  job: 'enrich-companies',
+  estimate: false
+})
+
+const actions = response.data.actions // Track this via fetchActions
 ```
 
 ### Fetch the actions for your actions
@@ -232,7 +291,14 @@ const response = await tca.exportCompaniesAnalytics({})
 📖 [Documentation](https://www.thecompaniesapi.com/api#actions-fetch)
 
 ```typescript
-const response = await tca.fetchActions({})
+// Fetch recent actions
+const response = await tca.fetchActions({
+  status: 'completed',
+  page: 1,
+  size: 5
+})
+
+const actions = response.data.actions // Metadata and status
 ```
 
 ## 🏭 Industries
@@ -242,7 +308,13 @@ const response = await tca.fetchActions({})
 📖 [Documentation](https://www.thecompaniesapi.com/api#industries-search)
 
 ```typescript
-const response = await tca.searchIndustries({})
+// Search industries by keyword
+const response = await tca.searchIndustries({
+  search: 'software',
+  size: 10
+})
+
+const industries = response.data.industries
 ```
 
 ### Find similar industries
@@ -250,7 +322,12 @@ const response = await tca.searchIndustries({})
 📖 [Documentation](https://www.thecompaniesapi.com/api#industries-find-similar)
 
 ```typescript
-const response = await tca.searchIndustriesSimilar({})
+// Find industries similar to given ones
+const response = await tca.searchIndustriesSimilar({
+  industries: ['saas', 'fintech']
+})
+
+const similar = response.data.industries
 ```
 
 ## ⚛️ Technologies
@@ -260,7 +337,13 @@ const response = await tca.searchIndustriesSimilar({})
 📖 [Documentation](https://www.thecompaniesapi.com/api#technologies-search)
 
 ```typescript
-const response = await tca.searchTechnologies({})
+// Search technologies by keyword
+const response = await tca.searchTechnologies({
+  search: 'shopify',
+  size: 10
+})
+
+const technologies = response.data.technologies
 ```
 
 ## 🌍 Locations
@@ -270,7 +353,13 @@ const response = await tca.searchTechnologies({})
 📖 [Documentation](https://www.thecompaniesapi.com/api#locations-search-cities)
 
 ```typescript
-const response = await tca.searchCities({})
+// Search cities by name
+const response = await tca.searchCities({
+  search: 'new york',
+  size: 5
+})
+
+const cities = response.data.cities
 ```
 
 ### Search counties
@@ -278,7 +367,13 @@ const response = await tca.searchCities({})
 📖 [Documentation](https://www.thecompaniesapi.com/api#locations-search-counties)
 
 ```typescript
-const response = await tca.searchCounties({})
+// Search counties by name
+const response = await tca.searchCounties({
+  search: 'orange',
+  size: 5
+})
+
+const counties = response.data.counties
 ```
 
 ### Search states
@@ -286,7 +381,13 @@ const response = await tca.searchCounties({})
 📖 [Documentation](https://www.thecompaniesapi.com/api#locations-search-states)
 
 ```typescript
-const response = await tca.searchStates({})
+// Search states by name
+const response = await tca.searchStates({
+  search: 'california',
+  size: 5
+})
+
+const states = response.data.states
 ```
 
 ### Search countries
@@ -294,7 +395,13 @@ const response = await tca.searchStates({})
 📖 [Documentation](https://www.thecompaniesapi.com/api#locations-search-countries)
 
 ```typescript
-const response = await tca.searchCountries({})
+// Search countries by name
+const response = await tca.searchCountries({
+  search: 'france',
+  size: 5
+})
+
+const countries = response.data.countries
 ```
 
 ### Search continents
@@ -302,7 +409,13 @@ const response = await tca.searchCountries({})
 📖 [Documentation](https://www.thecompaniesapi.com/api#locations-search-continents)
 
 ```typescript
-const response = await tca.searchContinents({})
+// Search continents by name
+const response = await tca.searchContinents({
+  search: 'asia',
+  size: 5
+})
+
+const continents = response.data.continents
 ```
 
 ## 💼 Job titles
@@ -312,7 +425,12 @@ const response = await tca.searchContinents({})
 📖 [Documentation](https://www.thecompaniesapi.com/api#job-titles-enrich-from-name)
 
 ```typescript
-const response = await tca.enrichJobTitles({})
+// Enrich "chief marketing officer"
+const response = await tca.enrichJobTitles({
+  name: 'chief marketing officer'
+})
+
+const jobTitle = response.data // Contains department, seniority, etc.
 ```
 
 ## 📋 Lists
@@ -322,7 +440,10 @@ const response = await tca.enrichJobTitles({})
 📖 [Documentation](https://www.thecompaniesapi.com/api#lists-fetch-lists)
 
 ```typescript
-const response = await tca.fetchLists({})
+// Fetch your lists
+const response = await tca.fetchLists()
+
+const lists = response.data.lists
 ```
 
 ### Create a list of companies
@@ -330,9 +451,13 @@ const response = await tca.fetchLists({})
 📖 [Documentation](https://www.thecompaniesapi.com/api#lists-create-list)
 
 ```typescript
+// Create a list of companies
 const response = await tca.createList({
-  name: 'My list',
+  name: 'My SaaS List',
+  type: 'companies'
 })
+
+const newList = response.data
 ```
 
 ### Fetch companies in your list
@@ -340,7 +465,12 @@ const response = await tca.createList({
 📖 [Documentation](https://www.thecompaniesapi.com/api#lists-fetch-companies)
 
 ```typescript
-const response = await tca.fetchCompaniesInList({})
+// Fetch companies in a list
+const response = await tca.fetchCompaniesInList({
+  listId: 1234
+})
+
+const companies = response.data.companies
 ```
 
 ### Add or remove companies in your list
@@ -348,11 +478,13 @@ const response = await tca.fetchCompaniesInList({})
 📖 [Documentation](https://www.thecompaniesapi.com/api#lists-toggle-companies)
 
 ```typescript
-// Add companies to the list
+// Add companies to a list
 const response = await tca.addCompaniesToList({
-  listId: myCompanyList.id,
-  companies: ['microsoft.com', 'apple.com']
+  listId: 1234,
+  companies: ['apple.com', 'stripe.com']
 })
+
+const list = response.data
 ```
 
 ## 👥 Teams
@@ -362,7 +494,10 @@ const response = await tca.addCompaniesToList({
 📖 [Documentation](https://www.thecompaniesapi.com/api#teams-fetch-team)
 
 ```typescript
-const response = await tca.fetchTeam({})
+// Fetch your team details
+const response = await tca.fetchTeam()
+
+const team = response.data
 ```
 
 ## 🔧 Others
@@ -372,7 +507,10 @@ const response = await tca.fetchTeam({})
 📖 [Documentation]()
 
 ```typescript
-const response = await tca.fetchApiHealth({})
+// Check API health status
+const response = await tca.fetchApiHealth()
+
+const health = response.data
 ```
 
 ### Fetch the OpenAPI schema
@@ -380,7 +518,10 @@ const response = await tca.fetchApiHealth({})
 📖 [Documentation]()
 
 ```typescript
-const response = await tca.fetchOpenApi({})
+// Fetch OpenAPI schema
+const response = await tca.fetchOpenApi()
+
+const schema = response.data
 ```
 
 ## License
