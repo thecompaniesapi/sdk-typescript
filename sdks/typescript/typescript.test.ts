@@ -1,43 +1,34 @@
 import { describe, expect, it } from 'vitest'
 import { operationsMap } from './src/schema'
-import { createClient, createHttpClient } from './src/sdk'
+import createClient from './src/sdk'
 
 function getTcaClient(overwriteParams?: {
   apiKey?: string
   apiUrl?: string
 }) {
-  const base = createHttpClient({
+  const client = createClient({
     apiKey: process.env.TCA_API_KEY,
     apiUrl: process.env.TCA_API_URL,
     ...(overwriteParams || {}),
   })
 
-  const operations = createClient({
-    apiKey: process.env.TCA_API_KEY,
-    apiUrl: process.env.TCA_API_URL,
-    ...(overwriteParams || {}),
-  })
-
-  return { base, operations }
+  return client
 }
 
 describe('should', () => {
   it('can create client', () => {
-    const { base, operations } = getTcaClient()
+    const client = getTcaClient()
 
-    expect(base).toBeDefined()
-    expect(operations).toBeDefined()
-    expect(Object.keys(operations).length).toEqual(Object.keys(operationsMap).length)
+    expect(client).toBeDefined()
+    expect(Object.keys(client).length).toEqual(Object.keys(operationsMap).length)
   })
 
   it('can fetch openapi client', async () => {
-    const { base, operations } = getTcaClient()
+    const client = getTcaClient()
 
-    const { data } = await base.GET('/v2/openapi')
-    const { data: dataOperations } = await operations.fetchOpenApi()
+    const { data } = await client.fetchOpenApi()
 
     expect(data).toBeDefined()
-    expect(dataOperations).toBeDefined()
 
     // Get operations from schema
     const operationsCount = Object.values(data?.paths || {}).reduce<number>(
@@ -46,56 +37,25 @@ describe('should', () => {
       },
       0,
     )
-    const operationsCountOperations = Object.values(dataOperations?.paths || {}).reduce<number>(
-      (acc, operations) => {
-        return acc + Object.keys(operations as Record<string, any>).length
-      },
-      0,
-    )
 
     // Compare operations from pulled schema with operations built locally
     expect(operationsCount).toEqual(Object.keys(operationsMap).length)
-    expect(operationsCountOperations).toEqual(Object.keys(operationsMap).length)
   })
 
   it('can fetch company', async () => {
-    const { base, operations } = getTcaClient()
+    const client = getTcaClient()
 
-    const { data } = await base.GET('/v2/companies/{domain}', {
-      params: {
-        path: {
-          domain: 'microsoft.com',
-        },
-      },
-    })
-
-    const { data: dataOperations } = await operations.fetchCompany({
+    const { data } = await client.fetchCompany({
       domain: 'microsoft.com',
     })
 
     expect(data).toBeDefined()
-    expect(dataOperations).toBeDefined()
   })
 
   it('can search companies with post and get params', async () => {
-    const { base, operations } = getTcaClient()
+    const client = getTcaClient()
 
-    const { data } = await base.GET('/v2/companies', {
-      params: {
-        query: {
-          query: [
-            {
-              attribute: 'about.industries',
-              operator: 'or',
-              sign: 'equals',
-              values: ['higher-education'],
-            },
-          ],
-          size: 3,
-        },
-      },
-    })
-    const { data: dataOperations } = await operations.searchCompanies({
+    const { data } = await client.searchCompanies({
       query: [
         {
           attribute: 'about.industries',
@@ -107,21 +67,7 @@ describe('should', () => {
       size: 3,
     })
 
-    const { data: dataPost } = await base.POST('/v2/companies', {
-      body: {
-        query: [
-          {
-            attribute: 'about.industries',
-            operator: 'or',
-            sign: 'equals',
-            values: ['higher-education'],
-          },
-        ],
-        size: 3,
-      },
-    })
-
-    const { data: dataOperationsPost } = await operations.searchCompaniesPost({
+    const { data: dataPost } = await client.searchCompaniesPost({
       query: [
         {
           attribute: 'about.industries',
@@ -133,16 +79,13 @@ describe('should', () => {
       size: 3,
     })
 
-    const companiesNames = data?.companies.map(company => company.about?.name).sort()
-    const companiesNamesOperations = dataOperations?.companies.map(company => company.about?.name).sort()
-    const companiesNamesPost = dataPost?.companies.map(company => company.about?.name).sort()
-    const companiesNamesOperationsPost = dataOperationsPost?.companies.map(company => company.about?.name).sort()
+    const companiesNames = data?.companies.map((company: any) => company.about?.name).sort()
+    const companiesNamesPost = dataPost?.companies.map((company: any) => company.about?.name).sort()
 
     expect(JSON.stringify(companiesNames)).toEqual(JSON.stringify(companiesNamesPost))
-    expect(JSON.stringify(companiesNamesOperations)).toEqual(JSON.stringify(companiesNamesOperationsPost))
     expect(data?.companies.length).toBe(3)
-    expect(data?.companies?.filter(company => company.about?.industries?.includes('higher-education')).length).toBe(3)
+    expect(data?.companies?.filter((company: any) => company.about?.industries?.includes('higher-education')).length).toBe(3)
     expect(dataPost?.companies.length).toBe(3)
-    expect(dataPost?.companies?.filter(company => company.about?.industries?.includes('higher-education')).length).toBe(3)
+    expect(dataPost?.companies?.filter((company: any) => company.about?.industries?.includes('higher-education')).length).toBe(3)
   })
 })
