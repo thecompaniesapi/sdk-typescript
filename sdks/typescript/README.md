@@ -8,7 +8,7 @@
 
 A fully-featured TypeScript SDK for [The Companies API](https://www.thecompaniesapi.com), providing type-safe access to company data, locations, industries, technologies, job titles, lists, and more.
 
-The complete API documentation is available [here](https://www.thecompaniesapi.com/api).
+If you need more details about a specific endpoint, you can find the corresponding documentation in [the API reference](https://www.thecompaniesapi.com/api). You can also contact us on our livechat if you have any questions.
 
 ## Features
 
@@ -35,7 +35,7 @@ yarn add @thecompaniesapi/sdk
 pnpm add @thecompaniesapi/sdk
 ```
 
-## Initialize our client
+## Initialize the client
 
 Get your API token from [your settings page](https://www.thecompaniesapi.com/settings/api-tokens) and initialize our client with `createClient`. The API token is required to authenticate your requests and should be kept secure. Never commit your API token to version control or share it publicly.
 
@@ -47,13 +47,9 @@ const tca = createClient({
 })
 ```
 
-## Documentation
+## 🏬 Companies
 
-If you need more details about a specific endpoint, you can find the corresponding documentation in [the API reference](https://www.thecompaniesapi.com/api). You can also contact us on our livechat if you have any questions.
-
-### 🏬 Companies
-
-#### Search companies
+### Search companies
 
 ```typescript
 const { data } = await tca.searchCompanies({
@@ -69,35 +65,35 @@ const { data } = await tca.searchCompanies({
 })
 ```
 
-#### Search companies by name
+### Search companies by name
 
 'searchCompaniesByName'
 
 ```typescript
 ```
 
-#### Search companies using a prompt
+### Search companies using a prompt
 
 'searchCompaniesByPrompt'
 
 ```typescript
 ```
 
-#### Search similar companies
+### Search similar companies
 
 'searchCompaniesSimilar'
 
 ```typescript
 ```
 
-### Count companies matching your query
+## Count companies matching your query
 
 'fetchCompaniesCount'
 
 ```typescript
 ```
 
-### Enrich a company from a domain name
+## Enrich a company from a domain name
 
 ```typescript
 // Fetch a company data if it exists in our database
@@ -112,162 +108,162 @@ const { data } = await tca.fetchCompany({
 })
 ```
 
-### Enrich a company from an email
+## Enrich a company from an email
 
 'fetchCompanyByEmail'
 
 ```typescript
 ```
 
-### Enrich a company from a social network URL
+## Enrich a company from a social network URL
 
 'fetchCompanyBySocials'
 
 ```typescript
 ```
 
-### Find a company email patterns
+## Find a company email patterns
 
 'fetchCompanyEmailPatterns'
 
 ```typescript
 ```
 
-### Ask a question about a company
+## Ask a question about a company
 
 'askCompany'
 
 ```typescript
 ```
 
-### Fetch the context of a company
+## Fetch the context of a company
 
 'fetchCompanyContext'
 
 ```typescript
 ```
 
-### Fetch analytics data for a query or your lists
+## Fetch analytics data for a query or your lists
 
 'fetchCompaniesAnalytics'
 
 ```typescript
 ```
 
-### Export analytics data in multiple formats for a search
+## Export analytics data in multiple formats for a search
 
 'exportCompaniesAnalytics'
 
 ```typescript
 ```
 
-### 🎯 Actions
+## 🎯 Actions
 
-#### Request an action on one or more companies
+### Request an action on one or more companies
 
 ```typescript
 ```
 
-#### Fetch the actions for your actions
+### Fetch the actions for your actions
 
 'fetchActions'
 
 ```typescript
 ```
 
-### 🏭 Industries
+## 🏭 Industries
 
-#### Search industries
+### Search industries
 
 'searchIndustries'
 
 ```typescript
 ```
 
-#### Find similar industries
+### Find similar industries
 
 'searchIndustriesSimilar'
 
 ```typescript
 ```
 
-### ⚛️ Technologies
+## ⚛️ Technologies
 
-#### Search technologies
+### Search technologies
 
 'searchTechnologies'
 
 ```typescript
 ```
 
-### 🌍 Locations
+## 🌍 Locations
 
-#### Search cities
+### Search cities
 
 'searchCities'
 
 ```typescript
 ```
 
-#### Search counties
+### Search counties
 
 'searchCounties'
 
 ```typescript
 ```
 
-#### Search countries
+### Search countries
 
 'searchCountries'
 
 ```typescript
 ```
 
-#### Search states
+### Search states
 
 'searchStates'
 
 ```typescript
 ```
 
-#### Search continents
+### Search continents
 
 'searchContinents'
 
 ```typescript
 ```
 
-### 💼 Job titles
+## 💼 Job titles
 
-#### Enrich a job title from its name
+### Enrich a job title from its name
 
 'enrichJobTitles'
 
 ```typescript
 ```
 
-### 📋 Lists
+## 📋 Lists
 
-#### Fetch your lists
+### Fetch your lists
 
 'fetchLists'
 
 ```typescript
 ```
 
-#### Create a list of companies
+### Create a list of companies
 
 ```typescript
 ```
 
-#### Fetch companies in your list
+### Fetch companies in your list
 
 'fetchCompaniesInList'
 
 ```typescript
 ```
 
-#### Add or remove companies in your list
+### Add or remove companies in your list
 
 ```typescript
 // Create a new list
@@ -282,25 +278,25 @@ const { data } = await tca.addCompaniesToList({
 })
 ```
 
-### 👥 Teams
+## 👥 Teams
 
-#### Fetch your team
+### Fetch your team
 
 'fetchTeam'
 
 ```typescript
 ```
 
-### 🔧 Others
+## 🔧 Others
 
-#### Fetch the health of the API
+### Fetch the health of the API
 
 'fetchApiHealth'
 
 ```typescript
 ```
 
-#### Fetch the OpenAPI schema
+### Fetch the OpenAPI schema
 
 'fetchOpenApi'
 
