@@ -51,7 +51,7 @@ const tca = createClient({
 
 If you need more details about a specific endpoint, you can find the corresponding documentation in [the API reference](https://www.thecompaniesapi.com/api). You can also contact us on our livechat if you have any questions.
 
-### Companies
+### 🏬 Companies
 
 #### Search companies
 
@@ -161,7 +161,7 @@ const { data } = await tca.fetchCompany({
 ```typescript
 ```
 
-### Actions
+### 🎯 Actions
 
 #### Request an action on one or more companies
 
@@ -175,7 +175,7 @@ const { data } = await tca.fetchCompany({
 ```typescript
 ```
 
-### Industries
+### 🏭 Industries
 
 #### Search industries
 
@@ -191,7 +191,7 @@ const { data } = await tca.fetchCompany({
 ```typescript
 ```
 
-### Technologies
+### ⚛️ Technologies
 
 #### Search technologies
 
@@ -200,7 +200,7 @@ const { data } = await tca.fetchCompany({
 ```typescript
 ```
 
-### Locations
+### 🌍 Locations
 
 #### Search cities
 
@@ -237,7 +237,7 @@ const { data } = await tca.fetchCompany({
 ```typescript
 ```
 
-### Job titles
+### 💼 Job titles
 
 #### Enrich a job title from its name
 
@@ -246,7 +246,7 @@ const { data } = await tca.fetchCompany({
 ```typescript
 ```
 
-### Lists
+### 📋 Lists
 
 #### Fetch your lists
 
@@ -282,7 +282,7 @@ const { data } = await tca.addCompaniesToList({
 })
 ```
 
-### Teams
+### 👥 Teams
 
 #### Fetch your team
 
@@ -291,7 +291,7 @@ const { data } = await tca.addCompaniesToList({
 ```typescript
 ```
 
-### Others
+### 🔧 Others
 
 #### Fetch the health of the API
 
