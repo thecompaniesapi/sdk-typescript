@@ -43,34 +43,136 @@ const tca = createClient({
 
 ## Examples
 
+### Companies
+
+#### Search companies
+
+'searchCompanies'
+
+#### Search companies by name
+
+'searchCompaniesByName'
+
+#### Search companies using a prompt
+
+'searchCompaniesByPrompt'
+
+#### Search similar companies
+
+'searchCompaniesSimilar'
+
+### Count companies matching your query
+
+'fetchCompaniesCount'
+
+### Enrich a company from a domain name
+
+'fetchCompany'
+
+### Enrich a company from an email
+
+'fetchCompanyByEmail'
+
+### Enrich a company from a social network URL
+
+'fetchCompanyBySocials'
+
+### Find a company email patterns
+
+'fetchCompanyEmailPatterns'
+
+### Ask a question about a company
+
+'askCompany'
+
+### Fetch the context of a company
+
+'fetchCompanyContext'
+
+### Fetch analytics data for a query or your lists
+
+'fetchCompaniesAnalytics'
+
+### Export analytics data in multiple formats for a search
+
+'exportCompaniesAnalytics'
+
+### Actions
+
+#### Request an action on one or more companies
+
+#### Fetch the actions for your actions
+
+'fetchActions'
+
+### Industries
+
+#### Search industries
+
+'searchIndustries'
+
+#### Find similar industries
+
+'searchIndustriesSimilar'
+
+### Technologies
+
+#### Search technologies
+
+'searchTechnologies'
+
+### Locations
+
+#### Search cities
+
+'searchCities'
+
+#### Search counties
+
+'searchCounties'
+
+#### Search countries
+
+'searchCountries'
+
+#### Search states
+
+'searchStates'
+
+#### Search continents
+
+'searchContinents'
+
+### Job titles
+
+#### Enrich a job title from its name
+
+'enrichJobTitles'
+
+### Lists
+
+#### Fetch your lists
+
+'fetchLists'
+
+#### Create a list of companies
+
+#### Fetch companies in your list
+
+'fetchCompaniesInList'
+
+#### Add or remove companies in your list
+
+### Teams
+
+#### Fetch your team
+
+'fetchTeam'
+
+### Others
+
 'fetchApiHealth'
 'fetchOpenApi'
-'fetchActions'
-'searchCompanies'
-'fetchCompany'
-'searchCompaniesByName'
-'searchCompaniesByPrompt'
-'searchCompaniesSimilar'
-'fetchCompaniesCount'
-'fetchCompanyByEmail'
-'fetchCompanyBySocials'
-'fetchCompanyEmailPatterns'
-'askCompany'
-'fetchCompanyContext'
-'fetchCompaniesAnalytics'
-'exportCompaniesAnalytics'
-'searchIndustries'
-'searchIndustriesSimilar'
-'searchTechnologies'
-'searchCities'
-'searchCounties'
-'searchCountries'
-'searchStates'
-'searchContinents'
-'enrichJobTitles'
-'fetchLists'
-'fetchCompaniesInList'
-'fetchTeam'
 
 ### Fetch a company data
 
