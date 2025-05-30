@@ -8,7 +8,9 @@
 
 A fully-featured TypeScript SDK for [The Companies API](https://www.thecompaniesapi.com), providing type-safe access to company data, locations, industries, technologies, job titles, lists, and more.
 
-If you need more details about a specific endpoint, you can find the corresponding documentation in [the API reference](https://www.thecompaniesapi.com/api). You can also contact us on our livechat if you have any questions.
+If you need more details about a specific endpoint, you can find the corresponding documentation in [the API reference](https://www.thecompaniesapi.com/api).
+
+You can also contact us on our [livechat](https://www.thecompaniesapi.com/) if you have any questions.
 
 ## 🚀 Features
 
