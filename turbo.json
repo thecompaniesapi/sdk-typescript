@@ -25,6 +25,11 @@
     "typecheck": {
       "outputs": [],
       "cache": true
+    },
+    "release": {
+      "dependsOn": ["^build"],
+      "outputs": [],
+      "cache": true
     }
   }
 }
