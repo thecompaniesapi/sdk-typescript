@@ -37,7 +37,7 @@
     "build": "unbuild",
     "lint": "eslint",
     "prepublishOnly": "unbuild",
-    "release": "bumpp minor --no-push --no-tag --no-commit"
+    "release": "bumpp patch --no-push --no-tag --no-commit -q"
   },
   "dependencies": {
     "openapi-fetch": "0.14.0"
