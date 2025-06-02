@@ -520,11 +520,11 @@ const response = await tca.fetchTeam()
 const team = response.data // Your team details
 ```
 
-## 🔧 Others
+## 🔧 Utilities
 
 ### Fetch the health of the API
 
-📖 [Documentation]()
+📖 [Documentation](https://www.thecompaniesapi.com/api#utilities-fetch-open-api)
 
 ```typescript
 // Check API health status
@@ -535,7 +535,7 @@ const health = response.data // The health of the API
 
 ### Fetch the OpenAPI schema
 
-📖 [Documentation]()
+📖 [Documentation](https://www.thecompaniesapi.com/api#utilities-fetch-open-api)
 
 ```typescript
 // Fetch OpenAPI schema
