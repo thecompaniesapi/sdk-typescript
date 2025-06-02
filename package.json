@@ -27,7 +27,7 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint --cache-dir='.turbo' --continue",
-    "release": "turbo run release --cache-dir='.turbo' --continue && bumpp patch -q -a",
+    "release": "bumpp patch -q -a -r",
     "start": "tsx src/index.ts",
     "test": "vitest",
     "typecheck": "turbo run typecheck",
