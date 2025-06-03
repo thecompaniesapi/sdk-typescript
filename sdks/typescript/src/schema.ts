@@ -4605,7 +4605,7 @@ export interface operations {
           [name: string]: unknown
         }
         content: {
-          'application/json': components['schemas']['Team'][]
+          'application/json': components['schemas']['Team']
         }
       }
       /** @description The error message */
@@ -4739,7 +4739,7 @@ export interface operations {
           [name: string]: unknown
         }
         content: {
-          'application/json': '' | components['schemas']['User']
+          'application/json': components['schemas']['User']
         }
       }
       /** @description The error message */
