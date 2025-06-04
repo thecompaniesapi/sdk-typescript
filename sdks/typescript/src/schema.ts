@@ -455,7 +455,8 @@ export interface paths {
     get?: never
     put?: never
     post?: never
-    delete?: never
+    /** @description Delete a list. */
+    delete: operations['deleteList']
     options?: never
     head?: never
     /** @description Update a list. */
@@ -532,6 +533,74 @@ export interface paths {
     patch?: never
     trace?: never
   }
+  '/v2/prompts': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** @description Fetch prompts history. */
+    get: operations['fetchPrompts']
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/v2/prompts/{promptId}': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    post?: never
+    /** @description Delete a prompt. */
+    delete: operations['deletePrompt']
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/v2/prompts/product': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /** @description Query the product prompt. */
+    post: operations['productPrompt']
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/v2/prompts/segmentation': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /** @description Convert a query to a segmentation. */
+    post: operations['promptToSegmentation']
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
 }
 export type webhooks = Record<string, never>
 export interface components {
@@ -576,9 +645,7 @@ export interface components {
       emailVerifiedResentAt: string | null
       fullName: string | null
       id: number
-      ip: string | null
       locale?: unknown
-      password: string
       pictureUrl: string | null
       referral?: string | null
       /** @enum {string|null} */
@@ -4247,6 +4314,70 @@ export interface operations {
       }
     }
   }
+  deleteList: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        listId: number
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Delete a list. */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['List']
+        }
+      }
+      /** @description The error message */
+      400: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            details?: unknown
+            /** @enum {string} */
+            messages: 'listNotFound'
+            status: number
+          }
+        }
+      }
+      /** @description The error message */
+      401: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            details?: unknown
+            /** @enum {string} */
+            messages: 'tokenNotFound' | 'invalidApiSecret' | 'missingApiSecret' | 'userNotAuthenticated'
+            status: number
+          }
+        }
+      }
+      /** @description The error message */
+      403: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            details?: unknown
+            /** @enum {string} */
+            messages: 'userCurrentTeamIsNotInstanceOwner'
+            status: number
+          }
+        }
+      }
+    }
+  }
   updateList: {
     parameters: {
       query?: never
@@ -4758,7 +4889,341 @@ export interface operations {
       }
     }
   }
+  fetchPrompts: {
+    parameters: {
+      query?: {
+        companyId?: number
+        context?: 'analytics' | 'api' | 'companies' | 'company' | 'documentation' | 'enrichment' | 'landing' | 'list' | 'similarity'
+        feature?: 'ask' | 'cleanup' | 'enrich' | 'product' | 'search' | 'similar'
+        limit?: number
+        listId?: number
+        model?: 'small' | 'large'
+        page?: number
+        prompt?: string
+        search?: string
+        size?: number
+      }
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Fetch prompts history. */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            meta: components['schemas']['PaginationMeta']
+            prompts: components['schemas']['Prompt'][]
+          }
+        }
+      }
+      /** @description The error message */
+      401: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            details?: unknown
+            /** @enum {string} */
+            messages: 'tokenNotFound' | 'invalidApiSecret' | 'missingApiSecret' | 'userNotAuthenticated'
+            status: number
+          }
+        }
+      }
+    }
+  }
+  deletePrompt: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        promptId: number
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Delete a prompt. */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['Prompt']
+        }
+      }
+      /** @description The error message */
+      400: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            details?: unknown
+            /** @enum {string} */
+            messages: 'promptNotFound'
+            status: number
+          }
+        }
+      }
+      /** @description The error message */
+      401: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            details?: unknown
+            /** @enum {string} */
+            messages: 'tokenNotFound' | 'invalidApiSecret' | 'missingApiSecret' | 'userNotAuthenticated'
+            status: number
+          }
+        }
+      }
+      /** @description The error message */
+      403: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            details?: unknown
+            /** @enum {string} */
+            messages: 'userCurrentTeamIsNotInstanceOwner'
+            status: number
+          }
+        }
+      }
+    }
+  }
+  productPrompt: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: {
+      content: {
+        'application/json': {
+          companyId?: number
+          /** @enum {string} */
+          context?: 'analytics' | 'api' | 'companies' | 'company' | 'documentation' | 'enrichment' | 'landing' | 'list' | 'similarity'
+          /** @enum {string} */
+          feature?: 'ask' | 'cleanup' | 'enrich' | 'product' | 'search' | 'similar'
+          force?: boolean
+          listId?: number
+          /** @enum {string} */
+          model?: 'small' | 'large'
+          prompt: string
+        }
+      }
+    }
+    responses: {
+      /** @description Query the product prompt. */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            meta: components['schemas']['PaginationMeta']
+            prompt: components['schemas']['Prompt']
+            response: {
+              all?: boolean
+              cost?: number
+              count?: number
+              domain?: string
+              error?: string
+              action?: {
+                cost?: number
+                data?: {
+                  answer: components['schemas']['LLMAnswer']
+                  domains?: string[]
+                  fields: {
+                    description?: string
+                    key: string
+                    /** @enum {string} */
+                    type: 'array|boolean' | 'array|number' | 'array|string' | 'boolean' | 'number' | 'string'
+                    values?: string[]
+                  }[]
+                  /** @enum {string} */
+                  job: 'ask-list'
+                  query?: components['schemas']['SegmentationCondition'][]
+                  question: string
+                }
+                listId?: number
+                promptId: number
+                /** @enum {string} */
+                status: 'pending'
+                /** @enum {string} */
+                type: 'jobs:request'
+              }
+              answer?: {
+                explanation?: string
+                output: {
+                  [key: string]: unknown
+                }
+                score: number
+              }
+            } | {
+              all?: boolean
+              cost?: number
+              count?: number
+              domain?: string
+              error?: string
+              action?: {
+                /** @enum {number} */
+                cost?: 0
+                data?: {
+                  domains?: string[]
+                  /** @enum {string} */
+                  job: 'cleanup-list'
+                  query?: components['schemas']['SegmentationCondition'][]
+                }
+                listId?: number
+                promptId: number
+                /** @enum {string} */
+                status: 'pending'
+                /** @enum {string} */
+                type: 'jobs:request'
+              }
+            } | {
+              all?: boolean
+              cost?: number
+              count?: number
+              domain?: string
+              error?: string
+              action?: {
+                cost?: number
+                data: {
+                  domains?: string[]
+                  /** @enum {string} */
+                  job: 'enrich-companies' | 'enrich-list'
+                  query?: components['schemas']['SegmentationCondition'][]
+                }
+                listId?: number
+                promptId: number
+                /** @enum {string} */
+                status: 'pending'
+                /** @enum {string} */
+                type: 'jobs:request'
+              }
+            } | {
+              all?: boolean
+              cost?: number
+              count?: number
+              domain?: string
+              error?: string
+              domains?: string[]
+              listId?: number
+              query?: components['schemas']['SegmentationCondition'][]
+            } | {
+              all?: boolean
+              cost?: number
+              count?: number
+              domain?: string
+              error?: string
+              domains?: string[]
+            }
+          }
+        }
+      }
+      /** @description The error message */
+      401: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            details?: unknown
+            /** @enum {string} */
+            messages: 'tokenNotFound' | 'invalidApiSecret' | 'missingApiSecret' | 'userNotAuthenticated'
+            status: number
+          }
+        }
+      }
+      /** @description The error message */
+      403: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            details?: unknown
+            /** @enum {string} */
+            messages: 'noCreditsRemaining'
+            status: number
+          }
+        }
+      }
+    }
+  }
+  promptToSegmentation: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: {
+      content: {
+        'application/json': {
+          /** @enum {string} */
+          context?: 'analytics' | 'api' | 'companies' | 'company' | 'documentation' | 'enrichment' | 'landing' | 'list' | 'similarity'
+          force?: boolean
+          listId?: number
+          /** @enum {string} */
+          model?: 'small' | 'large'
+          prompt: string
+        }
+      }
+    }
+    responses: {
+      /** @description Convert a query to a segmentation. */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            meta: components['schemas']['PaginationMeta']
+            prompt: components['schemas']['Prompt']
+            response: {
+              all?: boolean
+              cost?: number
+              count?: number
+              domain?: string
+              error?: string
+              domains?: string[]
+              listId?: number
+              query?: components['schemas']['SegmentationCondition'][]
+            }
+          }
+        }
+      }
+      /** @description The error message */
+      401: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            details?: unknown
+            /** @enum {string} */
+            messages: 'tokenNotFound' | 'invalidApiSecret' | 'missingApiSecret' | 'userNotAuthenticated'
+            status: number
+          }
+        }
+      }
+    }
+  }
 }
 
-export const operationsMap = { fetchApiHealth: { path: '/', method: 'get', pathParams: [] }, fetchOpenApi: { path: '/v2/openapi', method: 'get', pathParams: [] }, fetchActions: { path: '/v2/actions', method: 'get', pathParams: [] }, requestAction: { path: '/v2/actions', method: 'post', pathParams: [] }, searchCompanies: { path: '/v2/companies', method: 'get', pathParams: [] }, searchCompaniesPost: { path: '/v2/companies', method: 'post', pathParams: [] }, fetchCompany: { path: '/v2/companies/{domain}', method: 'get', pathParams: ['domain'] }, searchCompaniesByName: { path: '/v2/companies/by-name', method: 'get', pathParams: [] }, searchCompaniesByPrompt: { path: '/v2/companies/by-prompt', method: 'get', pathParams: [] }, searchSimilarCompanies: { path: '/v2/companies/similar', method: 'get', pathParams: [] }, countCompanies: { path: '/v2/companies/count', method: 'get', pathParams: [] }, countCompaniesPost: { path: '/v2/companies/count', method: 'post', pathParams: [] }, fetchCompanyByEmail: { path: '/v2/companies/by-email', method: 'get', pathParams: [] }, fetchCompanyBySocial: { path: '/v2/companies/by-social', method: 'get', pathParams: [] }, fetchCompanyEmailPatterns: { path: '/v2/companies/{domain}/email-patterns', method: 'get', pathParams: ['domain'] }, askCompany: { path: '/v2/companies/{domain}/ask', method: 'get', pathParams: ['domain'] }, fetchCompanyContext: { path: '/v2/companies/{domain}/context', method: 'get', pathParams: ['domain'] }, fetchCompaniesAnalytics: { path: '/v2/companies/analytics', method: 'get', pathParams: [] }, exportCompaniesAnalytics: { path: '/v2/companies/analytics/export', method: 'get', pathParams: [] }, searchIndustries: { path: '/v2/industries', method: 'get', pathParams: [] }, searchIndustriesSimilar: { path: '/v2/industries/similar', method: 'get', pathParams: [] }, searchTechnologies: { path: '/v2/technologies', method: 'get', pathParams: [] }, searchCities: { path: '/v2/locations/cities', method: 'get', pathParams: [] }, searchCounties: { path: '/v2/locations/counties', method: 'get', pathParams: [] }, searchCountries: { path: '/v2/locations/countries', method: 'get', pathParams: [] }, searchStates: { path: '/v2/locations/states', method: 'get', pathParams: [] }, searchContinents: { path: '/v2/locations/continents', method: 'get', pathParams: [] }, enrichJobTitles: { path: '/v2/job-titles/enrich', method: 'get', pathParams: [] }, fetchLists: { path: '/v2/lists', method: 'get', pathParams: [] }, createList: { path: '/v2/lists', method: 'post', pathParams: [] }, updateList: { path: '/v2/lists/{listId}', method: 'patch', pathParams: ['listId'] }, fetchCompaniesInList: { path: '/v2/lists/{listId}/companies', method: 'get', pathParams: ['listId'] }, fetchCompaniesInListPost: { path: '/v2/lists/{listId}/companies', method: 'post', pathParams: ['listId'] }, listsToggleCompanies: { path: '/v2/lists/{listId}/companies/toggle', method: 'post', pathParams: ['listId'] }, fetchTeam: { path: '/v2/teams/{teamId}', method: 'get', pathParams: ['teamId'] }, updateTeam: { path: '/v2/teams/{teamId}', method: 'patch', pathParams: ['teamId'] }, fetchUser: { path: '/v2/user', method: 'get', pathParams: [] } } as const
+export const operationsMap = { fetchApiHealth: { path: '/', method: 'get', pathParams: [] }, fetchOpenApi: { path: '/v2/openapi', method: 'get', pathParams: [] }, fetchActions: { path: '/v2/actions', method: 'get', pathParams: [] }, requestAction: { path: '/v2/actions', method: 'post', pathParams: [] }, searchCompanies: { path: '/v2/companies', method: 'get', pathParams: [] }, searchCompaniesPost: { path: '/v2/companies', method: 'post', pathParams: [] }, fetchCompany: { path: '/v2/companies/{domain}', method: 'get', pathParams: ['domain'] }, searchCompaniesByName: { path: '/v2/companies/by-name', method: 'get', pathParams: [] }, searchCompaniesByPrompt: { path: '/v2/companies/by-prompt', method: 'get', pathParams: [] }, searchSimilarCompanies: { path: '/v2/companies/similar', method: 'get', pathParams: [] }, countCompanies: { path: '/v2/companies/count', method: 'get', pathParams: [] }, countCompaniesPost: { path: '/v2/companies/count', method: 'post', pathParams: [] }, fetchCompanyByEmail: { path: '/v2/companies/by-email', method: 'get', pathParams: [] }, fetchCompanyBySocial: { path: '/v2/companies/by-social', method: 'get', pathParams: [] }, fetchCompanyEmailPatterns: { path: '/v2/companies/{domain}/email-patterns', method: 'get', pathParams: ['domain'] }, askCompany: { path: '/v2/companies/{domain}/ask', method: 'get', pathParams: ['domain'] }, fetchCompanyContext: { path: '/v2/companies/{domain}/context', method: 'get', pathParams: ['domain'] }, fetchCompaniesAnalytics: { path: '/v2/companies/analytics', method: 'get', pathParams: [] }, exportCompaniesAnalytics: { path: '/v2/companies/analytics/export', method: 'get', pathParams: [] }, searchIndustries: { path: '/v2/industries', method: 'get', pathParams: [] }, searchIndustriesSimilar: { path: '/v2/industries/similar', method: 'get', pathParams: [] }, searchTechnologies: { path: '/v2/technologies', method: 'get', pathParams: [] }, searchCities: { path: '/v2/locations/cities', method: 'get', pathParams: [] }, searchCounties: { path: '/v2/locations/counties', method: 'get', pathParams: [] }, searchCountries: { path: '/v2/locations/countries', method: 'get', pathParams: [] }, searchStates: { path: '/v2/locations/states', method: 'get', pathParams: [] }, searchContinents: { path: '/v2/locations/continents', method: 'get', pathParams: [] }, enrichJobTitles: { path: '/v2/job-titles/enrich', method: 'get', pathParams: [] }, fetchLists: { path: '/v2/lists', method: 'get', pathParams: [] }, createList: { path: '/v2/lists', method: 'post', pathParams: [] }, updateList: { path: '/v2/lists/{listId}', method: 'patch', pathParams: ['listId'] }, deleteList: { path: '/v2/lists/{listId}', method: 'delete', pathParams: ['listId'] }, fetchCompaniesInList: { path: '/v2/lists/{listId}/companies', method: 'get', pathParams: ['listId'] }, fetchCompaniesInListPost: { path: '/v2/lists/{listId}/companies', method: 'post', pathParams: ['listId'] }, listsToggleCompanies: { path: '/v2/lists/{listId}/companies/toggle', method: 'post', pathParams: ['listId'] }, fetchTeam: { path: '/v2/teams/{teamId}', method: 'get', pathParams: ['teamId'] }, updateTeam: { path: '/v2/teams/{teamId}', method: 'patch', pathParams: ['teamId'] }, fetchUser: { path: '/v2/user', method: 'get', pathParams: [] }, fetchPrompts: { path: '/v2/prompts', method: 'get', pathParams: [] }, deletePrompt: { path: '/v2/prompts/{promptId}', method: 'delete', pathParams: ['promptId'] }, productPrompt: { path: '/v2/prompts/product', method: 'post', pathParams: [] }, promptToSegmentation: { path: '/v2/prompts/segmentation', method: 'post', pathParams: [] } } as const
 export type OperationsMap = { [K in keyof operations]: typeof operationsMap[K] }
