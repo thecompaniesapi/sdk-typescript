@@ -66,6 +66,19 @@ importers:
         specifier: 2.8.0
         version: 2.8.0
 
+  examples/typescript:
+    dependencies:
+      '@thecompaniesapi/sdk':
+        specifier: 1.2.6
+        version: link:../../sdks/typescript
+    devDependencies:
+      tsx:
+        specifier: 4.19.4
+        version: 4.19.4
+      typescript:
+        specifier: 5.8.3
+        version: 5.8.3
+
   sdks/typescript:
     dependencies:
       openapi-fetch:

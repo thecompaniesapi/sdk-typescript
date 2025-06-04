@@ -1,0 +1,23 @@
+{
+  "name": "@thecompaniesapi/sdk-examples",
+  "type": "module",
+  "packageManager": "pnpm@10.11.0",
+  "description": "Examples for the Companies API SDK",
+  "author": "Julien Le Coupanec <julien@thecompaniesapi.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/thecompaniesapi/sdks#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thecompaniesapi/sdks.git"
+  },
+  "scripts": {
+    "enrich-users-signup": "tsx enrich-users-signup.ts"
+  },
+  "dependencies": {
+    "@thecompaniesapi/sdk": "1.2.6"
+  },
+  "devDependencies": {
+    "tsx": "4.19.4",
+    "typescript": "5.8.3"
+  }
+}
