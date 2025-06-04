@@ -47,7 +47,7 @@ The API token is required to authenticate your requests and should be kept secur
 import createClient from '@thecompaniesapi/sdk'
 
 const tca = createClient({
-  apiKey: 'your-api-token',
+  apiToken: 'your-api-token',
 })
 ```
 

@@ -3,11 +3,11 @@ import { operationsMap } from './src/schema'
 import createClient from './src/sdk'
 
 function getTcaClient(overwriteParams?: {
-  apiKey?: string
+  apiToken?: string
   apiUrl?: string
 }) {
   const client = createClient({
-    apiKey: process.env.TCA_API_KEY,
+    apiToken: process.env.TCA_API_TOKEN,
     apiUrl: process.env.TCA_API_URL,
     ...(overwriteParams || {}),
   })

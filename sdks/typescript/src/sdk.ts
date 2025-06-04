@@ -4,7 +4,7 @@ import createOpenApiClient from 'openapi-fetch'
 import { operationsMap } from './schema'
 
 const defaultParams = {
-  apiKey: undefined,
+  apiToken: undefined,
   apiUrl: 'https://api.thecompaniesapi.com',
 }
 
@@ -12,7 +12,7 @@ type TcaClient = Client<paths>
 
 function createHttpClient(
   params: {
-    apiKey?: string
+    apiToken?: string
     apiUrl?: string
     visitorId?: string
   } = defaultParams,
@@ -45,7 +45,7 @@ function createHttpClient(
     {
       onRequest: async ({ request }) => {
         // Add token to all requests
-        request.headers.set('Authorization', `Basic ${params.apiKey}`)
+        request.headers.set('Authorization', `Basic ${params.apiToken}`)
 
         // Support visitorId
         if (params.visitorId) {
@@ -68,7 +68,7 @@ type OperationsClient = {
 
 export default function createClient(
   params: {
-    apiKey?: string
+    apiToken?: string
     apiUrl?: string
     visitorId?: string
   } = defaultParams,
