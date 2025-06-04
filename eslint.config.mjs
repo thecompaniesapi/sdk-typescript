@@ -9,6 +9,7 @@ export default antfu(
     rules: {
       'pnpm/json-enforce-catalog': 'off',
       'ts/explicit-function-return-type': 'off',
+      'no-console': ['warn', { allow: ['warn', 'error', 'log'] }],
     },
   },
 )
