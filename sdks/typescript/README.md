@@ -162,6 +162,8 @@ const company = response.data // The company profile
 
 📖 [Documentation](https://www.thecompaniesapi.com/api#companies-enrich-from-email)
 
+🕹️ [Use Case: Enrich your users at signup with the latest information about their company](https://www.thecompaniesapi.com/use-cases/enrich-users-signup)
+
 ```typescript
 // Fetch the company profile behind a professional email address
 const response = await tca.fetchCompanyByEmail({
