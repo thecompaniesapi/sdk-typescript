@@ -213,10 +213,10 @@ export interface paths {
       path?: never
       cookie?: never
     }
-    /** @description Ask a question about a company by its domain. */
-    get: operations['askCompany']
+    get?: never
     put?: never
-    post?: never
+    /** @description Ask a question about a company by its domain. */
+    post: operations['askCompany']
     delete?: never
     options?: never
     head?: never
@@ -264,10 +264,10 @@ export interface paths {
       path?: never
       cookie?: never
     }
-    /** @description Export analytics data for search segmentations and lists. */
-    get: operations['exportCompaniesAnalytics']
+    get?: never
     put?: never
-    post?: never
+    /** @description Export analytics data for search segmentations and lists. */
+    post: operations['exportCompaniesAnalytics']
     delete?: never
     options?: never
     head?: never
@@ -490,12 +490,12 @@ export interface paths {
     }
     get?: never
     put?: never
-    /** @description Toggle one or more companies in a list. */
-    post: operations['listsToggleCompanies']
+    post?: never
     delete?: never
     options?: never
     head?: never
-    patch?: never
+    /** @description Toggle one or more companies in a list. */
+    patch: operations['listsToggleCompanies']
     trace?: never
   }
   '/v2/teams/{teamId}': {
@@ -726,6 +726,7 @@ export interface components {
       firstPage: number
       freeRequest: boolean
       lastPage: number
+      maxScrollResultsReached?: boolean
       perPage: number
       total: number
     }
@@ -2926,8 +2927,8 @@ export interface operations {
   fetchCompany: {
     parameters: {
       query?: {
+        refresh?: boolean
         simplified?: boolean
-        sync?: boolean
       }
       header?: never
       path: {
@@ -3328,8 +3329,8 @@ export interface operations {
     parameters: {
       query: {
         email: string
+        refresh?: boolean
         simplified?: boolean
-        sync?: boolean
       }
       header?: never
       path?: never
@@ -3407,10 +3408,10 @@ export interface operations {
         instagram?: string
         linkedin?: string
         pinterest?: string
+        refresh?: boolean
         simplified?: boolean
         snapchat?: string
         souncloud?: string
-        sync?: boolean
         tiktok?: string
         twitter?: string
         wellfound?: string
@@ -3530,27 +3531,32 @@ export interface operations {
   }
   askCompany: {
     parameters: {
-      query: {
-        explain?: boolean
-        fields?: {
-          description?: string
-          key: string
-          /** @enum {string} */
-          type: 'array|boolean' | 'array|number' | 'array|string' | 'boolean' | 'number' | 'string'
-          values?: string[]
-        }[]
-        listId?: number
-        model?: 'small' | 'large'
-        query?: components['schemas']['SegmentationCondition'][]
-        question: string
-      }
+      query?: never
       header?: never
       path: {
         domain: string
       }
       cookie?: never
     }
-    requestBody?: never
+    requestBody?: {
+      content: {
+        'application/json': {
+          explain?: boolean
+          fields?: {
+            description?: string
+            key: string
+            /** @enum {string} */
+            type: 'array|boolean' | 'array|number' | 'array|string' | 'boolean' | 'number' | 'string'
+            values?: string[]
+          }[]
+          listId?: number
+          /** @enum {string} */
+          model?: 'small' | 'large'
+          query?: components['schemas']['SegmentationCondition'][]
+          question: string
+        }
+      }
+    }
     responses: {
       /** @description Ask a question about a company by its domain. */
       200: {
@@ -3785,21 +3791,27 @@ export interface operations {
   }
   exportCompaniesAnalytics: {
     parameters: {
-      query?: {
-        actionId?: number
-        attributes?: ('about.businessType' | 'about.industries' | 'about.industry' | 'about.totalEmployees' | 'about.yearFounded' | 'analytics.monthlyVisitors' | 'apps' | 'codes.naics' | 'codes.sic' | 'contacts' | 'domain.tld' | 'finances.revenue' | 'finances.stockExchange' | 'locations.headquarters.city.code' | 'locations.headquarters.continent.code' | 'locations.headquarters.country.code' | 'locations.headquarters.county.code' | 'locations.headquarters.state.code' | 'meta.score' | 'meta.syncedAt' | 'socials' | 'technologies.active' | 'technologies.categories')[]
-        format?: 'csv' | 'json' | 'txt' | 'xls' | 'xml'
-        full?: boolean
-        listId?: number
-        query?: components['schemas']['SegmentationCondition'][]
-        size?: number
-        sort?: 'asc' | 'desc'
-      }
+      query?: never
       header?: never
       path?: never
       cookie?: never
     }
-    requestBody?: never
+    requestBody?: {
+      content: {
+        'application/json': {
+          actionId?: number
+          attributes?: ('about.businessType' | 'about.industries' | 'about.industry' | 'about.totalEmployees' | 'about.yearFounded' | 'analytics.monthlyVisitors' | 'apps' | 'codes.naics' | 'codes.sic' | 'contacts' | 'domain.tld' | 'finances.revenue' | 'finances.stockExchange' | 'locations.headquarters.city.code' | 'locations.headquarters.continent.code' | 'locations.headquarters.country.code' | 'locations.headquarters.county.code' | 'locations.headquarters.state.code' | 'meta.score' | 'meta.syncedAt' | 'socials' | 'technologies.active' | 'technologies.categories')[]
+          /** @enum {string} */
+          format?: 'csv' | 'json' | 'txt' | 'xls' | 'xml'
+          full?: boolean
+          listId?: number
+          query?: components['schemas']['SegmentationCondition'][]
+          size?: number
+          /** @enum {string} */
+          sort?: 'asc' | 'desc'
+        }
+      }
+    }
     responses: {
       /** @description Export analytics data for search segmentations and lists. */
       200: {
@@ -4490,7 +4502,6 @@ export interface operations {
         content: {
           'application/json': {
             companies: components['schemas']['CompanyV2'][]
-            maxScrollResultsReached: boolean
             meta: components['schemas']['PaginationMeta']
             query?: components['schemas']['SegmentationCondition'][]
           }
@@ -4581,7 +4592,6 @@ export interface operations {
         content: {
           'application/json': {
             companies: components['schemas']['CompanyV2'][]
-            maxScrollResultsReached: boolean
             meta: components['schemas']['PaginationMeta']
             query?: components['schemas']['SegmentationCondition'][]
           }
@@ -4647,7 +4657,7 @@ export interface operations {
           action: 'attach' | 'detach'
           companyIds?: number[]
           domains?: string[]
-          sync?: boolean
+          refresh?: boolean
         }
       }
     }
@@ -5225,5 +5235,5 @@ export interface operations {
   }
 }
 
-export const operationsMap = { fetchApiHealth: { path: '/', method: 'get', pathParams: [] }, fetchOpenApi: { path: '/v2/openapi', method: 'get', pathParams: [] }, fetchActions: { path: '/v2/actions', method: 'get', pathParams: [] }, requestAction: { path: '/v2/actions', method: 'post', pathParams: [] }, searchCompanies: { path: '/v2/companies', method: 'get', pathParams: [] }, searchCompaniesPost: { path: '/v2/companies', method: 'post', pathParams: [] }, fetchCompany: { path: '/v2/companies/{domain}', method: 'get', pathParams: ['domain'] }, searchCompaniesByName: { path: '/v2/companies/by-name', method: 'get', pathParams: [] }, searchCompaniesByPrompt: { path: '/v2/companies/by-prompt', method: 'get', pathParams: [] }, searchSimilarCompanies: { path: '/v2/companies/similar', method: 'get', pathParams: [] }, countCompanies: { path: '/v2/companies/count', method: 'get', pathParams: [] }, countCompaniesPost: { path: '/v2/companies/count', method: 'post', pathParams: [] }, fetchCompanyByEmail: { path: '/v2/companies/by-email', method: 'get', pathParams: [] }, fetchCompanyBySocial: { path: '/v2/companies/by-social', method: 'get', pathParams: [] }, fetchCompanyEmailPatterns: { path: '/v2/companies/{domain}/email-patterns', method: 'get', pathParams: ['domain'] }, askCompany: { path: '/v2/companies/{domain}/ask', method: 'get', pathParams: ['domain'] }, fetchCompanyContext: { path: '/v2/companies/{domain}/context', method: 'get', pathParams: ['domain'] }, fetchCompaniesAnalytics: { path: '/v2/companies/analytics', method: 'get', pathParams: [] }, exportCompaniesAnalytics: { path: '/v2/companies/analytics/export', method: 'get', pathParams: [] }, searchIndustries: { path: '/v2/industries', method: 'get', pathParams: [] }, searchIndustriesSimilar: { path: '/v2/industries/similar', method: 'get', pathParams: [] }, searchTechnologies: { path: '/v2/technologies', method: 'get', pathParams: [] }, searchCities: { path: '/v2/locations/cities', method: 'get', pathParams: [] }, searchCounties: { path: '/v2/locations/counties', method: 'get', pathParams: [] }, searchCountries: { path: '/v2/locations/countries', method: 'get', pathParams: [] }, searchStates: { path: '/v2/locations/states', method: 'get', pathParams: [] }, searchContinents: { path: '/v2/locations/continents', method: 'get', pathParams: [] }, enrichJobTitles: { path: '/v2/job-titles/enrich', method: 'get', pathParams: [] }, fetchLists: { path: '/v2/lists', method: 'get', pathParams: [] }, createList: { path: '/v2/lists', method: 'post', pathParams: [] }, updateList: { path: '/v2/lists/{listId}', method: 'patch', pathParams: ['listId'] }, deleteList: { path: '/v2/lists/{listId}', method: 'delete', pathParams: ['listId'] }, fetchCompaniesInList: { path: '/v2/lists/{listId}/companies', method: 'get', pathParams: ['listId'] }, fetchCompaniesInListPost: { path: '/v2/lists/{listId}/companies', method: 'post', pathParams: ['listId'] }, listsToggleCompanies: { path: '/v2/lists/{listId}/companies/toggle', method: 'post', pathParams: ['listId'] }, fetchTeam: { path: '/v2/teams/{teamId}', method: 'get', pathParams: ['teamId'] }, updateTeam: { path: '/v2/teams/{teamId}', method: 'patch', pathParams: ['teamId'] }, fetchUser: { path: '/v2/user', method: 'get', pathParams: [] }, fetchPrompts: { path: '/v2/prompts', method: 'get', pathParams: [] }, deletePrompt: { path: '/v2/prompts/{promptId}', method: 'delete', pathParams: ['promptId'] }, productPrompt: { path: '/v2/prompts/product', method: 'post', pathParams: [] }, promptToSegmentation: { path: '/v2/prompts/segmentation', method: 'post', pathParams: [] } } as const
+export const operationsMap = { fetchApiHealth: { path: '/', method: 'get', pathParams: [] }, fetchOpenApi: { path: '/v2/openapi', method: 'get', pathParams: [] }, fetchActions: { path: '/v2/actions', method: 'get', pathParams: [] }, requestAction: { path: '/v2/actions', method: 'post', pathParams: [] }, searchCompanies: { path: '/v2/companies', method: 'get', pathParams: [] }, searchCompaniesPost: { path: '/v2/companies', method: 'post', pathParams: [] }, fetchCompany: { path: '/v2/companies/{domain}', method: 'get', pathParams: ['domain'] }, searchCompaniesByName: { path: '/v2/companies/by-name', method: 'get', pathParams: [] }, searchCompaniesByPrompt: { path: '/v2/companies/by-prompt', method: 'get', pathParams: [] }, searchSimilarCompanies: { path: '/v2/companies/similar', method: 'get', pathParams: [] }, countCompanies: { path: '/v2/companies/count', method: 'get', pathParams: [] }, countCompaniesPost: { path: '/v2/companies/count', method: 'post', pathParams: [] }, fetchCompanyByEmail: { path: '/v2/companies/by-email', method: 'get', pathParams: [] }, fetchCompanyBySocial: { path: '/v2/companies/by-social', method: 'get', pathParams: [] }, fetchCompanyEmailPatterns: { path: '/v2/companies/{domain}/email-patterns', method: 'get', pathParams: ['domain'] }, askCompany: { path: '/v2/companies/{domain}/ask', method: 'post', pathParams: ['domain'] }, fetchCompanyContext: { path: '/v2/companies/{domain}/context', method: 'get', pathParams: ['domain'] }, fetchCompaniesAnalytics: { path: '/v2/companies/analytics', method: 'get', pathParams: [] }, exportCompaniesAnalytics: { path: '/v2/companies/analytics/export', method: 'post', pathParams: [] }, searchIndustries: { path: '/v2/industries', method: 'get', pathParams: [] }, searchIndustriesSimilar: { path: '/v2/industries/similar', method: 'get', pathParams: [] }, searchTechnologies: { path: '/v2/technologies', method: 'get', pathParams: [] }, searchCities: { path: '/v2/locations/cities', method: 'get', pathParams: [] }, searchCounties: { path: '/v2/locations/counties', method: 'get', pathParams: [] }, searchCountries: { path: '/v2/locations/countries', method: 'get', pathParams: [] }, searchStates: { path: '/v2/locations/states', method: 'get', pathParams: [] }, searchContinents: { path: '/v2/locations/continents', method: 'get', pathParams: [] }, enrichJobTitles: { path: '/v2/job-titles/enrich', method: 'get', pathParams: [] }, fetchLists: { path: '/v2/lists', method: 'get', pathParams: [] }, createList: { path: '/v2/lists', method: 'post', pathParams: [] }, updateList: { path: '/v2/lists/{listId}', method: 'patch', pathParams: ['listId'] }, deleteList: { path: '/v2/lists/{listId}', method: 'delete', pathParams: ['listId'] }, fetchCompaniesInList: { path: '/v2/lists/{listId}/companies', method: 'get', pathParams: ['listId'] }, fetchCompaniesInListPost: { path: '/v2/lists/{listId}/companies', method: 'post', pathParams: ['listId'] }, listsToggleCompanies: { path: '/v2/lists/{listId}/companies/toggle', method: 'patch', pathParams: ['listId'] }, fetchTeam: { path: '/v2/teams/{teamId}', method: 'get', pathParams: ['teamId'] }, updateTeam: { path: '/v2/teams/{teamId}', method: 'patch', pathParams: ['teamId'] }, fetchUser: { path: '/v2/user', method: 'get', pathParams: [] }, fetchPrompts: { path: '/v2/prompts', method: 'get', pathParams: [] }, deletePrompt: { path: '/v2/prompts/{promptId}', method: 'delete', pathParams: ['promptId'] }, productPrompt: { path: '/v2/prompts/product', method: 'post', pathParams: [] }, promptToSegmentation: { path: '/v2/prompts/segmentation', method: 'post', pathParams: [] } } as const
 export type OperationsMap = { [K in keyof operations]: typeof operationsMap[K] }
