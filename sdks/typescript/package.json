@@ -39,6 +39,7 @@
     "prepublishOnly": "unbuild"
   },
   "dependencies": {
+    "ofetch": "1.4.1",
     "openapi-fetch": "0.14.0"
   }
 }
