@@ -59,7 +59,7 @@ const tca = createClient({
 
 🕹️ [Use case: How to build a company search engine with our API](https://www.thecompaniesapi.com/use-cases/companies-search-engine)
 
-🔍 To learn more about our query system, please read our [use case documentation](https://www.thecompaniesapi.com/use-cases/companies-search-engine).
+🔍 To learn more about our query system, please read our [documentation](https://www.thecompaniesapi.com/use-cases/companies-search-engine).
 
 ```typescript
 // Search companies by industry and size
