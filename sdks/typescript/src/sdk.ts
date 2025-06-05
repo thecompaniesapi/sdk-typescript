@@ -1,5 +1,6 @@
 import type { Client, FetchResponse } from 'openapi-fetch'
 import type { operations, paths } from './schema'
+import { createFetch } from 'ofetch'
 import createOpenApiClient from 'openapi-fetch'
 import { operationsMap } from './schema'
 
@@ -17,8 +18,25 @@ function createHttpClient(
     visitorId?: string
   } = defaultParams,
 ): TcaClient {
+  const baseUrl = params.apiUrl || 'https://api.thecompaniesapi.com'
+
+  // Create a fetch client with a 300 second timeout enabling sync requests
+  const fetch = createFetch(
+    {
+      defaults: {
+        baseURL: baseUrl,
+        timeout: 300 * 1000,
+        headers: {
+          'Authorization': `Basic ${params.apiToken || ''}`,
+          'Tca-Visitor-Id': params.visitorId || '',
+        },
+      },
+    },
+  ).native
+
   const client = createOpenApiClient<paths>({
-    baseUrl: params.apiUrl || 'https://api.thecompaniesapi.com',
+    baseUrl,
+    fetch,
     querySerializer: (query) => {
       const search = new URLSearchParams()
 
