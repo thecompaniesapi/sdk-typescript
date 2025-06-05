@@ -77,6 +77,8 @@ const meta = response.data.meta // Meta information
 
 📖 [Documentation](https://www.thecompaniesapi.com/api#companies-search-name)
 
+🕹️ [Use case: Add a company search with autocomplete to your application](https://www.thecompaniesapi.com/use-cases/company-autocomplete)
+
 ```typescript
 const response = await tca.searchCompaniesByName({
   name: 'The Companies API',
@@ -162,7 +164,7 @@ const company = response.data // The company profile
 
 📖 [Documentation](https://www.thecompaniesapi.com/api#companies-enrich-from-email)
 
-🕹️ [Use Case: Enrich your users at signup with the latest information about their company](https://www.thecompaniesapi.com/use-cases/enrich-users-signup)
+🕹️ [c Enrich your users at signup with the latest information about their company](https://www.thecompaniesapi.com/use-cases/enrich-users-signup)
 
 ```typescript
 // Fetch the company profile behind a professional email address
