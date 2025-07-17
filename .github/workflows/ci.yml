@@ -38,11 +38,6 @@ jobs:
       - uses: oven-sh/setup-bun@v1
         with:
           bun-version: latest
-      - name: Set node lts/*
-        uses: actions/setup-node@v4
-        with:
-          node-version: lts/*
-          cache: npm
 
       - run: bun install
       - run: bun run build
