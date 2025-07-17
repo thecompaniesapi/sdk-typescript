@@ -1,7 +1,7 @@
 {
   "name": "@thecompaniesapi/sdk",
   "type": "module",
-  "version": "1.2.9",
+  "version": "1.2.10",
   "packageManager": "pnpm@10.11.0",
   "description": "An enrichment platform to search and retrieve information about companies",
   "author": "Yaël GUILLOUX <yael@thecompaniesapi.com>",
