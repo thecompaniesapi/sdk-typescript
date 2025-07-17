@@ -36,8 +36,6 @@
   "scripts": {
     "build": "unbuild",
     "lint": "eslint",
-    "prepublishOnly": "bun run build",
-    "prepare": "simple-git-hooks",
     "update:schema": "jiti ./scripts/update-schema.ts",
     "release": "bumpp patch -q -a -r",
     "start": "tsx src/index.ts",
@@ -56,9 +54,7 @@
     "dotenv": "16.5.0",
     "eslint": "9.27.0",
     "jiti": "2.4.2",
-    "lint-staged": "16.0.0",
     "openapi-typescript": "7.8.0",
-    "simple-git-hooks": "2.13.0",
     "tinyexec": "1.0.1",
     "tsx": "4.19.4",
     "turbo": "2.5.3",
@@ -68,11 +64,5 @@
     "vitest": "3.1.4",
     "vitest-package-exports": "0.1.1",
     "yaml": "2.8.0"
-  },
-  "simple-git-hooks": {
-    "pre-commit": "bun install --frozen-lockfile --no-scripts --offline && bunx lint-staged"
-  },
-  "lint-staged": {
-    "*": "eslint --fix"
   }
 }
