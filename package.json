@@ -36,7 +36,7 @@
   "scripts": {
     "build": "unbuild",
     "lint": "eslint",
-    "prepublishOnly": "unbuild",
+    "prepublishOnly": "bun run build",
     "prepare": "simple-git-hooks",
     "update:schema": "jiti ./scripts/update-schema.ts",
     "release": "bumpp patch -q -a -r",
