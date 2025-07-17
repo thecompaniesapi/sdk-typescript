@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { operationsMap } from './src/schema'
-import createClient from './src/sdk'
+import { operationsMap } from './schema'
+import createClient from './sdk'
 
 function getTcaClient(overwriteParams?: {
   apiToken?: string

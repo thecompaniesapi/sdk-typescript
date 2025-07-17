@@ -39,7 +39,7 @@ async function update() {
 
   contents = `${contents}\nexport type OperationsMap = { [K in keyof operations]: typeof operationsMap[K] }`
 
-  const typescriptPath = './sdks/typescript/src/schema.ts'
+  const typescriptPath = './src/schema.ts'
 
   fs.writeFileSync(typescriptPath, contents)
 

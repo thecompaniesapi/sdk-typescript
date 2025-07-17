@@ -1,5 +1,0 @@
-packages:
-  - sdks/*
-onlyBuiltDependencies:
-  - esbuild
-  - simple-git-hooks

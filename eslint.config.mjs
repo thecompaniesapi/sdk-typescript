@@ -4,7 +4,7 @@ import antfu from '@antfu/eslint-config'
 export default antfu(
   {
     type: 'lib',
-    ignores: ['sdks/typescript/src/openapi.ts'],
+    ignores: ['src/openapi.ts'],
     pnpm: true,
     rules: {
       'pnpm/json-enforce-catalog': 'off',
