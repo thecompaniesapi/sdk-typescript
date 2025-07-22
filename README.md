@@ -55,7 +55,7 @@ const tca = createClient({
 
 ### Search companies
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#companies-search)
+📖 [Documentation](https://www.thecompaniesapi.com/api/search-companies)
 
 🕹️ [Use case: How to build a company search engine with our API](https://www.thecompaniesapi.com/use-cases/companies-search-engine)
 
@@ -77,7 +77,7 @@ const meta = response.data.meta // Meta information
 
 ### Search companies by name
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#companies-search-name)
+📖 [Documentation](https://www.thecompaniesapi.com/api/search-companies-name)
 
 🕹️ [Use case: Add a company search with autocomplete to your application](https://www.thecompaniesapi.com/use-cases/company-autocomplete)
 
@@ -93,7 +93,7 @@ const meta = response.data.meta // Meta information
 
 ### Search companies using a prompt
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#companies-search-prompt)
+📖 [Documentation](https://www.thecompaniesapi.com/api/search-companies-prompt)
 
 ```typescript
 // Search 25 companies for a specific prompt
@@ -108,7 +108,7 @@ const meta = response.data.meta // Meta information
 
 ### Search similar companies
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#companies-search-similar)
+📖 [Documentation](https://www.thecompaniesapi.com/api/search-similar-companies)
 
 ```typescript
 // Search 25 companies that are similar to Crisp and Intercom
@@ -123,7 +123,7 @@ const meta = response.data.meta // Meta information
 
 ### Count companies matching your query
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#companies-count)
+📖 [Documentation](https://www.thecompaniesapi.com/api/count-companies)
 
 ```typescript
 // Count how many companies are in the computer-software industry
@@ -143,7 +143,7 @@ const count = response.data // Number of companies that match the query
 
 ### Enrich a company from a domain name
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#companies-enrich-from-domain)
+📖 [Documentation](https://www.thecompaniesapi.com/api/enrich-company-from-domain)
 
 ```typescript
 // Fetch company data from our database without enrichment (faster response)
@@ -164,7 +164,7 @@ const company = response.data // The company profile
 
 ### Enrich a company from an email
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#companies-enrich-from-email)
+📖 [Documentation](https://www.thecompaniesapi.com/api/enrich-company-from-email)
 
 🕹️ [c Enrich your users at signup with the latest information about their company](https://www.thecompaniesapi.com/use-cases/enrich-users-signup)
 
@@ -179,7 +179,7 @@ const company = response.data // The company profile
 
 ### Enrich a company from a social network URL
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#companies-enrich-from-social-network-url)
+📖 [Documentation](https://www.thecompaniesapi.com/api/enrich-company-from-social-network-url)
 
 ```typescript
 // Fetch the company profile behind a social network URL
@@ -192,7 +192,7 @@ const company = response.data // The company profile
 
 ### Find a company email patterns
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#companies-find-email-patterns)
+📖 [Documentation](https://www.thecompaniesapi.com/api/fetch-company-email-patterns)
 
 ```typescript
 // Fetch the company email patterns for a specific domain
@@ -205,7 +205,7 @@ const patterns = response.data // The company email patterns
 
 ### Ask a question about a company
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#companies-ask)
+📖 [Documentation](https://www.thecompaniesapi.com/api/ask-company)
 
 ```typescript
 // Ask what products a company offers using its domain
@@ -228,7 +228,7 @@ const meta = response.data.meta // Meta information
 
 ### Fetch the context of a company
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#companies-fetch-context)
+📖 [Documentation](https://www.thecompaniesapi.com/api/fetch-company-context)
 
 ```typescript
 // Get AI-generated strategic insights about a company
@@ -242,7 +242,7 @@ const meta = response.data.meta // Meta information
 
 ### Fetch analytics data for a query or your lists
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#companies-fetch-analytics)
+📖 [Documentation](https://www.thecompaniesapi.com/api/fetch-companies-analytics)
 
 ```typescript
 // Analyze company distribution by business type
@@ -264,7 +264,7 @@ const meta = response.data.meta // Meta information
 
 ### Export analytics data in multiple formats for a search
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#companies-export-analytics)
+📖 [Documentation](https://www.thecompaniesapi.com/api/export-companies-analytics)
 
 ```typescript
 // Export analytics to CSV
@@ -289,7 +289,7 @@ const meta = response.data.meta // Meta information
 
 ### Request an action on one or more companies
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#actions-request-action)
+📖 [Documentation](https://www.thecompaniesapi.com/api/request-action)
 
 ```typescript
 // Request an enrichment job on multiple companies
@@ -305,7 +305,7 @@ const meta = response.data.meta // Meta information
 
 ### Fetch the actions for your actions
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#actions-fetch)
+📖 [Documentation](https://www.thecompaniesapi.com/api/fetch-actions)
 
 ```typescript
 // Fetch recent actions
@@ -323,7 +323,7 @@ const meta = response.data.meta // Meta information
 
 ### Search industries
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#industries-search)
+📖 [Documentation](https://www.thecompaniesapi.com/api/search-industries)
 
 ```typescript
 // Search industries by keyword
@@ -338,7 +338,7 @@ const meta = response.data.meta // Meta information
 
 ### Find similar industries
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#industries-find-similar)
+📖 [Documentation](https://www.thecompaniesapi.com/api/find-similar-industries)
 
 ```typescript
 // Find industries similar to given ones
@@ -354,7 +354,7 @@ const meta = response.data.meta // Meta information
 
 ### Search technologies
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#technologies-search)
+📖 [Documentation](https://www.thecompaniesapi.com/api/search-technologies)
 
 ```typescript
 // Search technologies by keyword
@@ -371,7 +371,7 @@ const meta = response.data.meta // Meta information
 
 ### Search cities
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#locations-search-cities)
+📖 [Documentation](https://www.thecompaniesapi.com/api/search-cities)
 
 ```typescript
 // Search cities by name
@@ -386,7 +386,7 @@ const meta = response.data.meta // Meta information
 
 ### Search counties
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#locations-search-counties)
+📖 [Documentation](https://www.thecompaniesapi.com/api/search-counties)
 
 ```typescript
 // Search counties by name
@@ -401,7 +401,7 @@ const meta = response.data.meta // Meta information
 
 ### Search states
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#locations-search-states)
+📖 [Documentation](https://www.thecompaniesapi.com/api/search-states)
 
 ```typescript
 // Search states by name
@@ -416,7 +416,7 @@ const meta = response.data.meta // Meta information
 
 ### Search countries
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#locations-search-countries)
+📖 [Documentation](https://www.thecompaniesapi.com/api/search-countries)
 
 ```typescript
 // Search countries by name
@@ -431,7 +431,7 @@ const meta = response.data.meta // Meta information
 
 ### Search continents
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#locations-search-continents)
+📖 [Documentation](https://www.thecompaniesapi.com/api/search-continents)
 
 ```typescript
 // Search continents by name
@@ -448,7 +448,7 @@ const meta = response.data.meta // Meta information
 
 ### Enrich a job title from its name
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#job-titles-enrich-from-name)
+📖 [Documentation](https://www.thecompaniesapi.com/api/enrich-job-title-from-name)
 
 ```typescript
 // Enrich "chief marketing officer"
@@ -463,7 +463,7 @@ const jobTitle = response.data // Contains department, seniority, etc.
 
 ### Fetch your lists
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#lists-fetch-lists)
+📖 [Documentation](https://www.thecompaniesapi.com/api/fetch-lists)
 
 ```typescript
 // Fetch your lists
@@ -475,7 +475,7 @@ const meta = response.data.meta // Meta information
 
 ### Create a list of companies
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#lists-create-list)
+📖 [Documentation](https://www.thecompaniesapi.com/api/create-list)
 
 ```typescript
 // Create a list of companies
@@ -489,7 +489,7 @@ const newList = response.data // The new list
 
 ### Fetch companies in your list
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#lists-fetch-companies)
+📖 [Documentation](https://www.thecompaniesapi.com/api/fetch-companies-in-list)
 
 ```typescript
 // Fetch companies in a list
@@ -503,11 +503,11 @@ const meta = response.data.meta // Meta information
 
 ### Add or remove companies in your list
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#lists-toggle-companies)
+📖 [Documentation](https://www.thecompaniesapi.com/api/toggle-companies-in-list)
 
 ```typescript
 // Add companies to a list
-const response = await tca.addCompaniesToList({
+const response = await tca.toggleCompaniesInList({
   listId: 1234,
   companies: ['apple.com', 'stripe.com']
 })
@@ -519,7 +519,7 @@ const list = response.data // The updated list
 
 ### Fetch your team
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#teams-fetch-team)
+📖 [Documentation](https://www.thecompaniesapi.com/api/fetch-team)
 
 ```typescript
 // Fetch your team details
@@ -532,7 +532,7 @@ const team = response.data // Your team details
 
 ### Fetch the health of the API
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#utilities-fetch-open-api)
+📖 [Documentation](https://www.thecompaniesapi.com/api/fetch-api-health)
 
 ```typescript
 // Check API health status
@@ -543,7 +543,7 @@ const health = response.data // The health of the API
 
 ### Fetch the OpenAPI schema
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#utilities-fetch-open-api)
+📖 [Documentation](https://www.thecompaniesapi.com/api/fetch-openapi)
 
 ```typescript
 // Fetch OpenAPI schema
