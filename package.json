@@ -27,7 +27,7 @@
     ".": "./dist/sdk.mjs",
     "./package.json": "./package.json"
   },
-  "main": "./dist/sdk.mjs",
+  "main": "./dist/sdk.cjs",
   "module": "./dist/sdk.mjs",
   "types": "./dist/sdk.d.mts",
   "files": [
