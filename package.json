@@ -25,6 +25,8 @@
   "sideEffects": false,
   "exports": {
     ".": "./dist/sdk.mjs",
+    "./utils": "./dist/utils.mjs",
+    "./schema": "./dist/schema.mjs",
     "./package.json": "./package.json"
   },
   "main": "./dist/sdk.cjs",

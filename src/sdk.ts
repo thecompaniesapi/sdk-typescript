@@ -3,6 +3,7 @@ import type { operations, paths } from './schema'
 import { createFetch } from 'ofetch'
 import createOpenApiClient from 'openapi-fetch'
 import { operationsMap } from './schema'
+import { querySerializer } from './utils'
 
 const defaultParams = {
   apiToken: undefined,
@@ -37,26 +38,7 @@ function createHttpClient(
   const client = createOpenApiClient<paths>({
     baseUrl,
     fetch,
-    querySerializer: (query) => {
-      const search = new URLSearchParams()
-
-      // Convert all GET params to strings
-      for (const key in query) {
-        if (typeof query[key] === 'object') {
-          search.set(key, encodeURIComponent(JSON.stringify(query[key])))
-          continue
-        }
-
-        if (Array.isArray(query[key])) {
-          search.set(key, encodeURIComponent(JSON.stringify(query[key])))
-          continue
-        }
-
-        search.set(key, (query[key]?.toString() || query[key]) as string)
-      }
-
-      return search.toString()
-    },
+    querySerializer: query => querySerializer(query).string,
   })
 
   client.use(
