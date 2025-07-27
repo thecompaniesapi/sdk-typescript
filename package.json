@@ -24,9 +24,18 @@
   ],
   "sideEffects": false,
   "exports": {
-    ".": "./dist/sdk.mjs",
-    "./utils": "./dist/utils.mjs",
-    "./schema": "./dist/schema.mjs",
+    ".": {
+      "import": "./dist/sdk.mjs",
+      "require": "./dist/sdk.cjs"
+    },
+    "./utils": {
+      "import": "./dist/utils.mjs",
+      "require": "./dist/utils.cjs"
+    },
+    "./schema": {
+      "import": "./dist/schema.mjs",
+      "require": "./dist/schema.cjs"
+    },
     "./package.json": "./package.json"
   },
   "main": "./dist/sdk.cjs",
